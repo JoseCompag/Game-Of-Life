@@ -1,17 +1,35 @@
 package rules;
 
-import gameOfLife.Board;
+import boards.Board;
 import cells.Cell;
+import cells.LivingCell;
 
 public class Rule3 extends Rule{
 
-  public Rule3(Cell cell, Board board) {
-    this.cell = cell;
+  public Rule3(Board board) {
     this.board = board;
   }
 
   @Override
-  public Cell validate() {
-    return null;
+  public boolean validate(Cell cell) {
+
+    if(cell.getClass() == LivingCell.class){
+      return false;
+    }
+
+    board.setNeighbors();
+    int count = 0;
+    for (Cell c : cell.getNeighbors()) {
+      if (c.getClass() == LivingCell.class) {
+        count++;
+      }
+    }
+
+    return count == 3;
+  }
+
+  @Override
+  public Cell applyRule() {
+    return new LivingCell();
   }
 }
