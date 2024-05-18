@@ -29,7 +29,7 @@ public class RectangularBoard extends Board{
   }
 
   @Override
-  public Board newBoard(List<Rule> rules) {
+  public Board newBoard() {
     setNeighbors();
     Cell[][] newRectangularBoard = new Cell[width][height];
     for (int x = 0; x < width; x++) {
