@@ -6,9 +6,7 @@ import cells.LivingCell;
 
 public class Rule1 extends Rule{
 
-  public Rule1( Board board) {
-    this.board = board;
-  }
+  public Rule1() {}
 
   @Override
   public boolean validate(Cell cell) {
@@ -17,7 +15,6 @@ public class Rule1 extends Rule{
       return false;
     }
 
-    board.setNeighbors();
     int count = 0;
     for (Cell c : cell.getNeighbors()) {
      if (c.getClass() == LivingCell.class) {

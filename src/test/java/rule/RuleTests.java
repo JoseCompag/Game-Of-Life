@@ -18,9 +18,9 @@ public class RuleTests {
   @Test
   void testRule() {
     Board board = new RectangularBoard(8, 8);
-    Rule rule1 = new Rule1(board);
-    Rule rule2 = new Rule2(board);
-    Rule rule3 = new Rule3(board);
+    Rule rule1 = new Rule1();
+    Rule rule2 = new Rule2();
+    Rule rule3 = new Rule3();
     List<Rule> rules = new ArrayList<Rule>();
     rules.add(rule1);
     rules.add(rule2);

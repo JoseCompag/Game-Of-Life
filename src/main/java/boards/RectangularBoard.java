@@ -29,7 +29,8 @@ public class RectangularBoard extends Board{
   }
 
   @Override
-  public Board nextBoard(List<Rule> rules) {
+  public Board newBoard(List<Rule> rules) {
+    setNeighbors();
     Cell[][] newRectangularBoard = new Cell[width][height];
     for (int x = 0; x < width; x++) {
       for (int y = 0; y < height; y++) {
@@ -45,8 +46,8 @@ public class RectangularBoard extends Board{
     return new RectangularBoard(newRectangularBoard);
   }
 
-  @Override
-  public void setNeighbors() {
+
+  private void setNeighbors() {
     ArrayList<Cell> aux;
 
     for (int x = 0; x < width; x++) {

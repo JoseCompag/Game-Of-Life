@@ -7,8 +7,7 @@ import cells.LivingCell;
 
 public class Rule2 extends Rule{
 
-  public Rule2(Board board) {
-    this.board = board;
+  public Rule2() {
   }
 
   @Override
@@ -18,7 +17,6 @@ public class Rule2 extends Rule{
       return false;
     }
 
-    board.setNeighbors();
     int count = 0;
     for (Cell c : cell.getNeighbors()) {
       if (c.getClass() == LivingCell.class) {
