@@ -1,33 +1,30 @@
 package rule;
 
-import board.Board;
 import cell.Cell;
 import cell.DeadCell;
 import cell.LivingCell;
 
-public class Rule2 extends Rule{
+public class DeathRule extends Rule {
 
-  public Rule2() {
-  }
+  public DeathRule () {}
 
   @Override
-  public boolean validate(Cell cell) {
-
-    if(cell.getClass() == LivingCell.class){
+  public boolean validate (Cell cell) {
+    if (cell.getClass() == LivingCell.class) {
       return false;
     }
-
     int count = 0;
     for (Cell c : cell.getNeighbors()) {
       if (c.getClass() == LivingCell.class) {
         count++;
       }
     }
+    return count > 3 || count == 1 || count == 0;
+  }
 
-    return count < 2;
-  }
   @Override
-  public Cell applyRule() {
-    return new DeadCell();
+  public Cell apply() {
+    return new DeadCell ();
   }
+
 }

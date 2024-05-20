@@ -5,7 +5,6 @@ import cell.DeadCell;
 import rule.Rule;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RectangularBoard extends Board{
 
@@ -37,7 +36,7 @@ public class RectangularBoard extends Board{
         Cell cell = board[x][y];
         for(Rule rule : rules){
           if(rule.validate(cell)){
-            newRectangularBoard[x][y] = rule.applyRule();
+            newRectangularBoard[x][y] = rule.apply();
             break;
           }
         }
