@@ -10,7 +10,8 @@ public abstract class Board {
 
     public abstract Board newBoard();
 
-    public void setRules(List<Rule> rules) {
+    public void setRules (List<Rule> rules) {
         this.rules = rules;
     }
+
 }

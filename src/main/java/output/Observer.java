@@ -5,5 +5,6 @@ import board.Board;
 import java.util.Observable;
 
 public interface Observer {
-  public void update(Board board, Integer generation);
+  public void update (Board board, Integer generation);
+
 }

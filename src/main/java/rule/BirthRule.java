@@ -5,7 +5,7 @@ import cell.LivingCell;
 
 public class BirthRule extends Rule {
 
-  public BirthRule () {}
+  public BirthRule() {}
 
   @Override
   public boolean validate (Cell cell) {
@@ -23,7 +23,7 @@ public class BirthRule extends Rule {
 
   @Override
   public Cell apply() {
-    return new LivingCell ();
+    return new LivingCell();
   }
 
 }

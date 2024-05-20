@@ -6,7 +6,7 @@ public abstract class Cell {
 
     private ArrayList<Cell> neighbors;
 
-    public Cell () {
+    public Cell() {
         neighbors = new ArrayList<>();
     }
 
@@ -14,7 +14,7 @@ public abstract class Cell {
         return neighbors;
     }
 
-    public void setNeighbors(ArrayList<Cell> neighbors) {
+    public void setNeighbors (ArrayList<Cell> neighbors) {
         this.neighbors = neighbors;
     }
 

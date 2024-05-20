@@ -5,7 +5,7 @@ import cell.LivingCell;
 
 public class StayAliveRule extends Rule {
 
-  public StayAliveRule () {}
+  public StayAliveRule() {}
 
   @Override
   public boolean validate (Cell cell) {
@@ -23,7 +23,7 @@ public class StayAliveRule extends Rule {
 
   @Override
   public Cell apply() {
-    return new LivingCell ();
+    return new LivingCell();
   }
 
 }

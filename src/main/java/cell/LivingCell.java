@@ -6,4 +6,5 @@ public class LivingCell extends Cell {
   public String toString() {
     return "■";
   }
+
 }

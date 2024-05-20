@@ -12,7 +12,7 @@ public class RectangularBoard extends Board{
   private int width;
   private int height;
 
-  public RectangularBoard(int width, int height) {
+  public RectangularBoard (int width, int height) {
     this.width = width;
     this.height = height;
     board = new Cell[width][height];
@@ -23,7 +23,7 @@ public class RectangularBoard extends Board{
     }
   }
 
-  public RectangularBoard(Cell[][] board){
+  public RectangularBoard (Cell[][] board) {
     this.board = board;
   }
 
@@ -34,21 +34,19 @@ public class RectangularBoard extends Board{
     for (int x = 0; x < width; x++) {
       for (int y = 0; y < height; y++) {
         Cell cell = board[x][y];
-        for(Rule rule : rules){
-          if(rule.validate(cell)){
-            newRectangularBoard[x][y] = rule.apply();
+        for (Rule rule : rules) {
+          if (rule.validate(cell)) {
+            newRectangularBoard[x][y] = rule.apply ();
             break;
           }
         }
       }
     }
-    return new RectangularBoard(newRectangularBoard);
+    return new RectangularBoard (newRectangularBoard);
   }
-
 
   private void setNeighbors() {
     ArrayList<Cell> aux;
-
     for (int x = 0; x < width; x++) {
       for (int y = 0; y < height; y++) {
         aux = calculateNeighbors(x, y);
@@ -57,12 +55,10 @@ public class RectangularBoard extends Board{
     }
   }
 
-  private ArrayList<Cell> calculateNeighbors(int x, int y) {
+  private ArrayList<Cell> calculateNeighbors (int x, int y) {
     ArrayList<Cell> neighbors = new ArrayList<>();
-
     for (int i = x-1; i <= x+1; i++) {
       for (int j = y-1; j <= y+1; j++) {
-
         if (i >= 0 && i < board.length && j >= 0 && j < board[0].length && (i != x || j != y)) {
           neighbors.add(board[i][j]);
         }

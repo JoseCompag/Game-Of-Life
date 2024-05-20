@@ -6,7 +6,7 @@ import cell.LivingCell;
 
 public class DeathRule extends Rule {
 
-  public DeathRule () {}
+  public DeathRule() {}
 
   @Override
   public boolean validate (Cell cell) {
@@ -24,7 +24,7 @@ public class DeathRule extends Rule {
 
   @Override
   public Cell apply() {
-    return new DeadCell ();
+    return new DeadCell();
   }
 
 }

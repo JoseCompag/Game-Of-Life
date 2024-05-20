@@ -3,19 +3,20 @@ package output;
 import board.Board;
 import game.Game;
 
-public class Output implements Observer{
+public class Output implements Observer {
 
   private Game game;
 
-  public Output(Game game) {
+  public Output (Game game) {
     this.game = game;
-    game.registerObserver(this);
+    game.registerObserver (this);
   }
 
   @Override
-  public void update(Board board, Integer generation) {
+  public void update (Board board, Integer generation) {
     String print = board.toString();
-    System.out.println("---"+generation+"---");
-    System.out.println(print);
+    System.out.println ("---"+generation+"---");
+    System.out.println (print);
   }
+
 }
