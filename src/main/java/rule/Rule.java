@@ -1,7 +1,7 @@
-package rules;
+package rule;
 
-import boards.Board;
-import cells.Cell;
+import board.Board;
+import cell.Cell;
 
 public abstract class Rule {
 

@@ -1,8 +1,5 @@
-package gameOfLife;
+package cell;
 
-import cells.Cell;
-import cells.DeadCell;
-import cells.LivingCell;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;

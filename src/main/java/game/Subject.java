@@ -1,6 +1,5 @@
 package game;
 
-
 import output.Observer;
 
 import java.util.List;

@@ -1,12 +1,14 @@
-package rules;
+package rule;
 
-import boards.Board;
-import cells.Cell;
-import cells.LivingCell;
+import board.Board;
+import cell.Cell;
+import cell.DeadCell;
+import cell.LivingCell;
 
-public class Rule3 extends Rule{
+public class Rule2 extends Rule{
 
-  public Rule3() {}
+  public Rule2() {
+  }
 
   @Override
   public boolean validate(Cell cell) {
@@ -22,11 +24,10 @@ public class Rule3 extends Rule{
       }
     }
 
-    return count == 3;
+    return count < 2;
   }
-
   @Override
   public Cell applyRule() {
-    return new LivingCell();
+    return new DeadCell();
   }
 }

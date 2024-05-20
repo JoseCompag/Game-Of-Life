@@ -1,7 +1,7 @@
 package board;
 
-import boards.Board;
-import boards.RectangularBoard;
+import board.Board;
+import board.RectangularBoard;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

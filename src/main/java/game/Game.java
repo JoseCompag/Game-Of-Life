@@ -1,8 +1,8 @@
 package game;
 
-import boards.Board;
+import board.Board;
 import output.Observer;
-import rules.Rule;
+import rule.Rule;
 
 import java.util.ArrayList;
 import java.util.List;

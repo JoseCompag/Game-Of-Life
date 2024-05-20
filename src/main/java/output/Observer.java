@@ -1,6 +1,6 @@
 package output;
 
-import boards.Board;
+import board.Board;
 
 import java.util.Observable;
 

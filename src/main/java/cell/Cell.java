@@ -1,4 +1,4 @@
-package cells;
+package cell;
 
 import java.util.ArrayList;
 

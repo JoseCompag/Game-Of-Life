@@ -1,12 +1,12 @@
 package game;
 
-import boards.Board;
-import boards.RectangularBoard;
+import board.Board;
+import board.RectangularBoard;
 import org.junit.jupiter.api.Test;
-import rules.Rule;
-import rules.Rule1;
-import rules.Rule2;
-import rules.Rule3;
+import rule.Rule;
+import rule.Rule1;
+import rule.Rule2;
+import rule.Rule3;
 
 import java.util.ArrayList;
 import java.util.List;

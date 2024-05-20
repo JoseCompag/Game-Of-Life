@@ -1,6 +1,6 @@
 package output;
 
-import boards.Board;
+import board.Board;
 import game.Game;
 
 public class Output implements Observer{

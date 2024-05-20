@@ -1,8 +1,8 @@
-package boards;
+package board;
 
-import cells.Cell;
-import cells.DeadCell;
-import rules.Rule;
+import cell.Cell;
+import cell.DeadCell;
+import rule.Rule;
 
 import java.util.ArrayList;
 import java.util.List;

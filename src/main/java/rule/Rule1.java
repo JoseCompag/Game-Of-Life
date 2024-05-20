@@ -1,8 +1,8 @@
-package rules;
+package rule;
 
-import boards.Board;
-import cells.Cell;
-import cells.LivingCell;
+import board.Board;
+import cell.Cell;
+import cell.LivingCell;
 
 public class Rule1 extends Rule{
 

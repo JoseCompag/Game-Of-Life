@@ -1,6 +1,6 @@
-package boards;
+package board;
 
-import rules.Rule;
+import rule.Rule;
 
 import java.util.List;
 
