@@ -3,17 +3,17 @@ package rule;
 import cell.Cell;
 import cell.LivingCell;
 
+import java.util.List;
+
 public class StayAliveRule extends Rule {
 
   public StayAliveRule() {}
 
   @Override
-  public boolean validate (Cell cell) {
-    if (cell.getClass() != LivingCell.class) {
-      return false;
-    }
+  public boolean validate (List<Cell> cells) {
+
     int count = 0;
-    for (Cell c : cell.getNeighbors()) {
+    for (Cell c : cells) {
      if (c.getClass() == LivingCell.class) {
        count++;
      }

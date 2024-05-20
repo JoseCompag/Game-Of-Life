@@ -10,22 +10,20 @@ import java.util.List;
 public class Game extends Subject {
 
   private Board board;
-  private List<Rule> rules;
   private Integer generation;
 
-  public Game (Board board, List<Rule> rules) {
+  public Game (Board board) {
     observers = new ArrayList<Observer>();
     this.board = board;
-    this.rules = rules;
   }
 
   public void start() {
     generation = 0;
-    while (generation < 100) {
-      this.board = board.nextBoard (this.rules);
+    do {
+      this.board = board.nextBoard ();
       generation++;
       notifyObservers();
-    }
+    }while (generation < 100);
   }
 
   @Override

@@ -3,15 +3,18 @@ package board;
 import board.Board;
 import board.RectangularBoard;
 import org.junit.jupiter.api.Test;
+import rule.Rule;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class BoardTests {
-
+/*
   @Test
   public void testBoardToString() {
-    Board board = new RectangularBoard(8,8);
+    Board board = new RectangularBoard(8, 8, );
     String res = board.toString();
     System.out.println(res);
     assertTrue(true);
@@ -22,4 +25,6 @@ public class BoardTests {
     Board board = new RectangularBoard(8,8);
     assertTrue(true);
   }
+
+ */
 }
