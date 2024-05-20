@@ -5,8 +5,9 @@ import cell.DeadCell;
 import rule.Rule;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class RectangularBoard extends Board{
+public class RectangularBoard extends Board {
 
   private Cell[][] board;
   private int width;
@@ -28,7 +29,7 @@ public class RectangularBoard extends Board{
   }
 
   @Override
-  public Board newBoard() {
+  public Board nextBoard (List<Rule> rules) {
     setNeighbors();
     Cell[][] newRectangularBoard = new Cell[width][height];
     for (int x = 0; x < width; x++) {

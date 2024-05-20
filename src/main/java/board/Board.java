@@ -6,12 +6,6 @@ import java.util.List;
 
 public abstract class Board {
 
-    List<Rule> rules;
-
-    public abstract Board newBoard();
-
-    public void setRules (List<Rule> rules) {
-        this.rules = rules;
-    }
+    public abstract Board nextBoard (List<Rule> rules);
 
 }

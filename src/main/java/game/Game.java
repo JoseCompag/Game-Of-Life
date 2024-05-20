@@ -20,10 +20,9 @@ public class Game extends Subject {
   }
 
   public void start() {
-    this.board.setRules (this.rules);
     generation = 0;
     while (generation < 100) {
-      this.board = board.newBoard();
+      this.board = board.nextBoard (this.rules);
       generation++;
       notifyObservers();
     }
@@ -35,4 +34,5 @@ public class Game extends Subject {
       o.update (board, generation);
     }
   }
+
 }
