@@ -7,7 +7,11 @@ import java.util.List;
 
 public class BirthRule extends Rule {
 
-  public BirthRule() {}
+  private int numOfLiveCellsForBirth;
+
+  public BirthRule (int numOfLiveCellsForBirth) {
+    this.numOfLiveCellsForBirth = numOfLiveCellsForBirth;
+  }
 
   @Override
   public boolean validate (List<Cell> cells) {
@@ -17,7 +21,7 @@ public class BirthRule extends Rule {
         count++;
       }
     }
-    return count == 3;
+    return count == this.numOfLiveCellsForBirth;
   }
 
   @Override
