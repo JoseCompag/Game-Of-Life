@@ -4,19 +4,18 @@ import board.Board;
 import board.RectangularBoard;
 import org.junit.jupiter.api.Test;
 import output.Output;
-import rule.Rule;
-import rule.StayAliveRule;
-import rule.DeathRule;
-import rule.BirthRule;
+import rule.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameTest {
 
+  RuleFactory ruleFactory;
+
   @Test
   public void testGame() {
-    Rule rule1 = new StayAliveRule();
+    Rule rule1 = new SurviveRule();
     Rule rule2 = new DeathRule();
     Rule rule3 = new BirthRule();
     List<Rule> rules = new ArrayList<Rule>();
