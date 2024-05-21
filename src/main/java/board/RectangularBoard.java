@@ -10,16 +10,16 @@ import java.util.List;
 public class RectangularBoard extends Board {
 
   private Cell[][] board;
-  private int width;
-  private int height;
+  private int rows;
+  private int cols;
 
-  public RectangularBoard (int width, int height, List<Rule> rules) {
-    this.width = width;
-    this.height = height;
+  public RectangularBoard (int rows, int cols, List<Rule> rules) {
+    this.rows = rows;
+    this.cols = cols;
     this.rules = rules;
-    board = new Cell[width][height];
-    for (int x = 0; x < width; x++) {
-      for (int y = 0; y < height; y++) {
+    board = new Cell[rows][cols];
+    for (int x = 0; x < rows; x++) {
+      for (int y = 0; y < cols; y++) {
         board[x][y] = new DeadCell();
       }
     }
@@ -27,9 +27,9 @@ public class RectangularBoard extends Board {
 
   @Override
   public Board nextBoard () {
-    RectangularBoard newBoard = new RectangularBoard(width, height, rules);
-    for (int x = 0; x < width; x++) {
-      for (int y = 0; y < height; y++) {
+    RectangularBoard newBoard = new RectangularBoard(rows, cols, rules);
+    for (int x = 0; x < rows; x++) {
+      for (int y = 0; y < cols; y++) {
         for (Rule rule : rules) {
           List<Cell> neighbors = calculateNeighbors(x, y);
           if (rule.validate(neighbors)) {
@@ -39,7 +39,6 @@ public class RectangularBoard extends Board {
         }
       }
     }
-
     return newBoard;
   }
 
@@ -47,17 +46,6 @@ public class RectangularBoard extends Board {
     board[x][y] = cell;
   }
 
-  /*
-  private void setNeighbors() {
-    ArrayList<Cell> aux;
-    for (int x = 0; x < width; x++) {
-      for (int y = 0; y < height; y++) {
-        aux = calculateNeighbors(x, y);
-        board[x][y].setNeighbors(aux);
-      }
-    }
-  }
-  */
   private ArrayList<Cell> calculateNeighbors (int x, int y) {
     ArrayList<Cell> neighbors = new ArrayList<>();
     for (int i = x-1; i <= x+1; i++) {
@@ -73,8 +61,8 @@ public class RectangularBoard extends Board {
   @Override
   public String toString() {
     String res = "";
-    for (int x = 0; x < width; x++) {
-      for (int y = 0; y < height; y++) {
+    for (int x = 0; x < rows; x++) {
+      for (int y = 0; y < cols; y++) {
         res += board[x][y].toString();
         res += "  ";
       }
@@ -82,4 +70,5 @@ public class RectangularBoard extends Board {
     }
     return res;
   }
+
 }
