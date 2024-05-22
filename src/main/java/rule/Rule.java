@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class Rule {
 
-  public abstract boolean validate (List<Cell> cells);
+  public abstract boolean validate (Cell cell, List<Cell> cells);
 
   public abstract Cell apply();
 

@@ -2,6 +2,7 @@ package board;
 
 import cell.Cell;
 import cell.DeadCell;
+import cell.LivingCell;
 import rule.Rule;
 
 import java.util.ArrayList;
@@ -25,6 +26,38 @@ public class RectangularBoard extends Board {
     }
   }
 
+  public RectangularBoard (String config, Integer rows, Integer cols, List<Rule> rules) {
+    this.rows = rows;
+    this.cols = cols;
+    this.rules = rules;
+    board = new Cell[rows][cols];
+    configInitial(config);
+  }
+
+  private void configInitial(String config){
+    int count = 0;
+    int x = 0;
+    int y = 0;
+
+    while (count < config.length()-1) {
+      if (config.charAt(count) != '\n') {
+        char aux = config.charAt(count);
+        if (aux == '■') {
+          board[x][y] = new LivingCell();
+          x++;
+        } else if (aux == '□') {
+          board[x][y] = new DeadCell();
+          x++;
+        }
+      } else {
+        x=0;
+        y++;
+      }
+      count++;
+    }
+
+  }
+
   @Override
   public Board nextBoard () {
     RectangularBoard newBoard = new RectangularBoard(rows, cols, rules);
@@ -32,7 +65,8 @@ public class RectangularBoard extends Board {
       for (int y = 0; y < cols; y++) {
         for (Rule rule : rules) {
           List<Cell> neighbors = calculateNeighbors(x, y);
-          if (rule.validate(neighbors)) {
+          Cell cell = board[x][y];
+          if (rule.validate(cell, neighbors)) {
             newBoard.setCell(x,y,rule.apply());
             break;
           }
@@ -64,7 +98,7 @@ public class RectangularBoard extends Board {
     for (int x = 0; x < rows; x++) {
       for (int y = 0; y < cols; y++) {
         res += board[x][y].toString();
-        res += "  ";
+        res += " ";
       }
       res += "\n";
     }

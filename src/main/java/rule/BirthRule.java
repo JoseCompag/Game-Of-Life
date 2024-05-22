@@ -14,7 +14,12 @@ public class BirthRule extends Rule {
   }
 
   @Override
-  public boolean validate (List<Cell> cells) {
+  public boolean validate (Cell cell, List<Cell> cells) {
+
+    if (cell.getClass() == LivingCell.class) {
+      return false;
+    }
+
     int count = 0;
     for (Cell c : cells) {
       if (c.getClass() == LivingCell.class) {

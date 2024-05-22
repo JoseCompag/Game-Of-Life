@@ -24,28 +24,53 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class RuleTests {
 
-  static Stream<Arguments> listRules() {
+  static Stream<Arguments> listSurviveRule() {
     return Stream.of(
             //
             arguments(List.of(new LivingCell(), new LivingCell(), new DeadCell(),
-                    new DeadCell(), new DeadCell(), new DeadCell(), new DeadCell(), new DeadCell()), LivingCell.class),
+                    new DeadCell(), new DeadCell(), new DeadCell(), new DeadCell(), new DeadCell()), new LivingCell()),
             //
             arguments(List.of(new LivingCell(), new LivingCell(), new DeadCell(),
-                    new DeadCell(), new DeadCell(), new DeadCell(), new LivingCell(), new DeadCell()), LivingCell.class),
+                    new DeadCell(), new DeadCell(), new DeadCell(), new LivingCell(), new DeadCell()), new LivingCell()),
             //
             arguments(List.of(new LivingCell(), new LivingCell(), new LivingCell(),
-                    new DeadCell(), new DeadCell(), new DeadCell(), new DeadCell(), new DeadCell()), LivingCell.class)
+                    new DeadCell(), new DeadCell(), new DeadCell(), new DeadCell(), new DeadCell()), new LivingCell())
             );
   }
 
   @ParameterizedTest
-  @MethodSource("listRules")
+  @MethodSource("listSurviveRule")
   void testSurviveRule(List<Cell> cells, Cell cell) {
     Rule rule1 = new SurviveRule(2, 3);
-    Boolean res = rule1.validate(cells);
+    Boolean res = rule1.validate(new LivingCell(), cells);
     Cell cellRes = rule1.apply();
     assertThat(res).isEqualTo(true);
-    assertThat(cellRes).isEqualTo(cell);
-
+    assertThat(cellRes.getClass()).isEqualTo(cell.getClass());
   }
+
+  static Stream<Arguments> listBirthRule() {
+    return Stream.of(
+      //
+      arguments(List.of(new LivingCell(), new DeadCell(), new LivingCell(),
+        new DeadCell(), new LivingCell(), new DeadCell(), new DeadCell(), new LivingCell()), new LivingCell()),
+      //
+      arguments(List.of(new LivingCell(), new LivingCell(), new DeadCell(),
+        new LivingCell(), new DeadCell(), new DeadCell(), new LivingCell(), new DeadCell()), new LivingCell()),
+      //
+      arguments(List.of(new LivingCell(), new LivingCell(), new LivingCell(),
+        new DeadCell(), new LivingCell(), new DeadCell(), new DeadCell(), new DeadCell()), new LivingCell())
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("listBirthRule")
+  void testBirthRule(List<Cell> cells, Cell cell) {
+    Rule rule1 = new BirthRule(4);
+    Boolean res = rule1.validate(new DeadCell(), cells);
+    Cell cellRes = rule1.apply();
+    assertThat(res).isEqualTo(true);
+    assertThat(cellRes.getClass()).isEqualTo(cell.getClass());
+  }
+
+
 }

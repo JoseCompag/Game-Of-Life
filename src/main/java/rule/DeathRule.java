@@ -10,7 +10,7 @@ public class DeathRule extends Rule {
   public DeathRule() {}
 
   @Override
-  public boolean validate (List<Cell> cells) {
+  public boolean validate (Cell cell, List<Cell> cells) {
     return true;
   }
 
