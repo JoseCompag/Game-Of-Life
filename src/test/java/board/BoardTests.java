@@ -130,9 +130,11 @@ public class BoardTests {
     Board board = new RectangularBoard(configInitial, 6, 6, rules);
 
     for (String listBoard : boards) {
+      System.out.println(board.toString());
       board = board.nextBoard();
-      String res = board.toString();
-      assertThat(res).isEqualTo(listBoard);
+      String aux = board.toString();
+      Boolean res = aux.equals(listBoard);
+      assertThat(res).isTrue();
     }
   }
 
@@ -192,9 +194,4 @@ public class BoardTests {
         "□ □ □ □ □ □ "+"\n")
     );
   }
-
-
-
-
-
 }

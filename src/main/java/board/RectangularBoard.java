@@ -1,8 +1,6 @@
 package board;
 
-import cell.Cell;
-import cell.DeadCell;
-import cell.LivingCell;
+import cell.*;
 import rule.Rule;
 
 import java.util.ArrayList;
@@ -26,36 +24,32 @@ public class RectangularBoard extends Board {
     }
   }
 
-  public RectangularBoard (String config, Integer rows, Integer cols, List<Rule> rules) {
+  public RectangularBoard (String configInitial, Integer rows, Integer cols, List<Rule> rules) {
     this.rows = rows;
     this.cols = cols;
     this.rules = rules;
     board = new Cell[rows][cols];
-    configInitial(config);
+    configInitial(configInitial);
   }
 
   private void configInitial(String config){
     int count = 0;
     int x = 0;
     int y = 0;
-
     while (count < config.length()-1) {
       if (config.charAt(count) != '\n') {
-        char aux = config.charAt(count);
-        if (aux == '■') {
-          board[x][y] = new LivingCell();
-          x++;
-        } else if (aux == '□') {
-          board[x][y] = new DeadCell();
-          x++;
+        char character = config.charAt(count);
+        if (CellFactoryForBoard.correctCell(character)) {
+          CellFactory cellFactory = CellFactoryForBoard.cellFactory(character);
+          board[x][y] = cellFactory.createCell();
+          y++;
         }
       } else {
-        x=0;
-        y++;
+        y=0;
+        x++;
       }
       count++;
     }
-
   }
 
   @Override
