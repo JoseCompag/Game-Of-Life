@@ -51,11 +51,10 @@ public class GameTest {
           "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
     Board board = new RectangularBoard(configInitial, 15, 20, rules);
     Game game = new Game(board);
-    game.setGeneration(10);
     Output output = new Output(game);
-    game.start();
+    game.start(10);
     Board newBoardGame = game.getBoard();
-    String res =
+    String newBoard =
         "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
         "□ □ □ □ □ □ □ □ □ □ ■ □ □ □ □ □ □ □ □ □ \n" +
         "□ □ □ □ □ □ □ □ □ ■ □ ■ □ □ □ □ □ □ □ □ \n" +
@@ -71,8 +70,8 @@ public class GameTest {
         "□ □ □ □ □ □ □ □ □ ■ □ ■ □ □ □ □ □ □ □ □ \n" +
         "□ □ □ □ □ □ □ □ □ □ ■ □ □ □ □ □ □ □ □ □ \n" +
         "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
-    Boolean aux = res.equals(newBoardGame.toString());
-    assertThat(aux).isTrue();
+    Boolean res = newBoard.equals(newBoardGame.toString());
+    assertThat(res).isTrue();
 
   }
 

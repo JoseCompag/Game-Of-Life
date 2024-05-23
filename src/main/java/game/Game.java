@@ -21,17 +21,13 @@ public class Game extends Subject {
     return board;
   }
 
-  public void setGeneration(Integer generation) {
-    this.generation = generation;
-  }
-
-  public void start() {
-    int count = 1;
+  public void start(Integer generationMax) {
+    generation = 0;
     do {
       this.board = board.nextBoard ();
-      count++;
+      generation++;
       notifyObservers();
-    }while (count <= generation);
+    }while (generation < generationMax);
   }
 
   @Override
