@@ -10,8 +10,5 @@ public abstract class Board {
 
     public abstract Board nextBoard();
 
-    public void setRules (List<Rule> rules) {
-        this.rules = rules;
-    }
 
 }

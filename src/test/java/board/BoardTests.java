@@ -29,73 +29,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 
 public class BoardTests {
-  /*
-  RectangularBoard board;
-  List<Rule> rules;
 
-  @BeforeEach
-  public void setUp() {
-    Rule rule1 = new BirthRule(3);
-    Rule rule2 = new SurviveRule(3,2);
-    Rule rule3 = new DeathRule();
-    List<Rule> rules = new ArrayList<>();
-    rules.add(rule1);
-    rules.add(rule2);
-    rules.add(rule3);
-    this.rules = rules;
-    RectangularBoard board = new RectangularBoard(6,6,rules);
-    board.setCell(1, 3, new LivingCell());
-    board.setCell(1, 4, new LivingCell());
-    board.setCell(2, 3, new LivingCell());
-    board.setCell(2, 4, new LivingCell());
-    board.setCell(3, 1, new LivingCell());
-    board.setCell(3, 2, new LivingCell());
-    board.setCell(4, 2, new LivingCell());
-    board.setCell(4, 1, new LivingCell());
-    this.board = board;
-  }
-
-  static Stream<Arguments> listBoards() {
-    return Stream.of(
-      //
-      arguments(
-          "□ □ □ □ □ □ \n" +
-          "□ □ □ ■ ■ □ \n" +
-          "□ □ □ □ ■ □ \n" +
-          "□ ■ □ □ □ □ \n" +
-          "□ ■ ■ □ □ □ \n" +
-          "□ □ □ □ □ □ \n" ),
-      arguments(
-          "□ □ □ □ □ □ \n" +
-          "□ □ □ ■ ■ □ \n" +
-          "□ □ □ ■ ■ □ \n" +
-          "□ ■ ■ □ □ □ \n" +
-          "□ ■ ■ □ □ □ \n" +
-          "□ □ □ □ □ □ \n" ),
-      arguments(
-          "□ □ □ □ □ □ \n" +
-          "□ □ □ ■ ■ □ \n" +
-          "□ □ □ □ ■ □ \n" +
-          "□ ■ □ □ □ □ \n" +
-          "□ ■ ■ □ □ □ \n" +
-          "□ □ □ □ □ □ \n" )
-
-      );
-  }
-
-  @ParameterizedTest
-  @MethodSource("listBoards")
-  void testBoard(String boards) {
-    String res1 = board.toString();
-    System.out.println(res1);
-    board = (RectangularBoard) board.nextBoard();
-    //this.board = (RectangularBoard) board.nextBoard();
-    String res = board.toString();
-    System.out.println(res);
-    assertThat(res).isEqualTo(boards);
-  }
-
-   */
   List<Rule> rules = new ArrayList<>();
 
   @BeforeEach
@@ -124,8 +58,8 @@ public class BoardTests {
   }
 
   @ParameterizedTest
-  @MethodSource("listBoards")
-  void testNextBoard(List<String> boards, String configInitial) {
+  @MethodSource("listBoards1")
+  void testNextBoard1(List<String> boards, String configInitial) {
 
     Board board = new RectangularBoard(configInitial, 6, 6, rules);
 
@@ -138,7 +72,7 @@ public class BoardTests {
     }
   }
 
-  static Stream<Arguments> listBoards() {
+  static Stream<Arguments> listBoards1() {
     return Stream.of(
       //
       arguments(List.of(
@@ -192,6 +126,108 @@ public class BoardTests {
         "□ □ □ ■ □ □ \n" +
         "□ □ □ □ □ □ \n" +
         "□ □ □ □ □ □ "+"\n")
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("listBoards2")
+  void testNextBoard2(List<String> boards, String configInitial) {
+
+    Board board = new RectangularBoard(configInitial, 8, 8, rules);
+
+    for (String listBoard : boards) {
+      System.out.println(board.toString());
+      board = board.nextBoard();
+      String aux = board.toString();
+      Boolean res = aux.equals(listBoard);
+      assertThat(res).isTrue();
+    }
+  }
+
+  static Stream<Arguments> listBoards2() {
+    return Stream.of(
+      //
+      arguments(List.of(
+            "□ □ □ □ ■ □ □ □ \n" +
+            "□ □ □ □ ■ □ □ □ \n" +
+            "□ □ □ □ ■ ■ □ □ \n" +
+            "□ □ □ □ □ □ □ □ \n" +
+            "■ ■ ■ □ □ ■ ■ ■ \n" +
+            "□ □ ■ □ ■ □ ■ □ \n" +
+            "□ □ □ □ ■ ■ □ □ \n" +
+            "□ □ □ □ ■ □ □ □ \n",
+
+          "□ □ □ □ □ □ □ □ \n" +
+            "□ □ □ ■ ■ □ □ □ \n" +
+            "□ □ □ □ ■ ■ □ □ \n" +
+            "□ ■ □ □ ■ □ □ □ \n" +
+            "□ ■ ■ ■ □ ■ ■ ■ \n" +
+            "□ □ ■ □ ■ □ □ ■ \n" +
+            "□ □ □ □ ■ □ □ □ \n" +
+            "□ □ □ □ ■ ■ □ □ \n",
+
+          "□ □ □ □ □ □ □ □ \n" +
+            "□ □ □ ■ ■ ■ □ □ \n" +
+            "□ □ □ □ □ ■ □ □ \n" +
+            "□ ■ □ □ □ □ □ □ \n" +
+            "□ ■ □ □ □ ■ ■ ■ \n" +
+            "□ ■ ■ □ ■ □ □ ■ \n" +
+            "□ □ □ □ ■ □ □ □ \n" +
+            "□ □ □ □ ■ ■ □ □ \n",
+
+            "□ □ □ □ ■ □ □ □ \n" +
+            "□ □ □ □ ■ ■ □ □ \n" +
+            "□ □ □ □ □ ■ □ □ \n" +
+            "□ □ □ □ □ ■ □ □ \n" +
+            "■ ■ □ □ □ ■ ■ ■ \n" +
+            "□ ■ ■ ■ ■ □ □ ■ \n" +
+            "□ □ □ □ ■ □ □ □ \n" +
+            "□ □ □ □ ■ ■ □ □ \n",
+
+            "□ □ □ □ ■ ■ □ □ \n" +
+            "□ □ □ □ ■ ■ □ □ \n" +
+            "□ □ □ □ □ ■ ■ □ \n" +
+            "□ □ □ □ ■ ■ □ □ \n" +
+            "■ ■ □ ■ □ ■ □ ■ \n" +
+            "■ ■ ■ ■ ■ □ □ ■ \n" +
+            "□ □ ■ □ □ □ □ □ \n" +
+            "□ □ □ □ ■ ■ □ □ \n",
+
+            "□ □ □ □ ■ ■ □ □ \n" +
+            "□ □ □ □ □ □ □ □ \n" +
+            "□ □ □ □ □ □ ■ □ \n" +
+            "□ □ □ □ □ □ □ □ \n" +
+            "■ □ □ □ □ ■ □ □ \n" +
+            "■ □ □ □ ■ □ ■ □ \n" +
+            "□ □ ■ □ □ ■ □ □ \n" +
+            "□ □ □ □ □ □ □ □ \n",
+
+          "□ □ □ □ □ □ □ □ \n" +
+            "□ □ □ □ □ ■ □ □ \n" +
+            "□ □ □ □ □ □ □ □ \n" +
+            "□ □ □ □ □ □ □ □ \n" +
+            "□ □ □ □ □ ■ □ □ \n" +
+            "□ ■ □ □ ■ □ ■ □ \n" +
+            "□ □ □ □ □ ■ □ □ \n" +
+            "□ □ □ □ □ □ □ □ \n",
+
+          "□ □ □ □ □ □ □ □ \n" +
+            "□ □ □ □ □ □ □ □ \n" +
+            "□ □ □ □ □ □ □ □ \n" +
+            "□ □ □ □ □ □ □ □ \n" +
+            "□ □ □ □ □ ■ □ □ \n" +
+            "□ □ □ □ ■ □ ■ □ \n" +
+            "□ □ □ □ □ ■ □ □ \n" +
+            "□ □ □ □ □ □ □ □ \n"
+        ),
+        "□ □ □ □ □ □ □ □ \n" +
+          "□ □ □ ■ ■ ■ □ □ \n" +
+          "□ □ □ □ □ □ □ □ \n" +
+          "□ ■ □ □ □ □ ■ □ \n" +
+          "□ ■ □ □ □ □ ■ □ \n" +
+          "□ ■ □ □ □ □ ■ □ \n" +
+          "□ □ □ ■ ■ ■ □ □ \n" +
+          "□ □ □ □ □ □ □ □ "+"\n")
     );
   }
 }

@@ -23,7 +23,7 @@ public class Game extends Subject {
       this.board = board.nextBoard ();
       generation++;
       notifyObservers();
-    }while (generation < 100);
+    }while (generation < 25);
   }
 
   @Override
