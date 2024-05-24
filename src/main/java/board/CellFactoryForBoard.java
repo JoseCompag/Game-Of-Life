@@ -6,22 +6,21 @@ import cell.LivingCellFactory;
 
 public class CellFactoryForBoard {
 
-  public static boolean correctCell(Character simbol){
-    if (simbol.equals('■')) {
+  public static boolean correctCell (Character symbol) {
+    if (symbol.equals('■')) {
       return true;
     }
-    if (simbol.equals('□')) {
+    if (symbol.equals('□')) {
       return true;
     }
-
-
     return false;
   }
 
-  public static CellFactory cellFactory(Character simbol){
-    if (simbol.equals('■')) {
+  public static CellFactory cellFactory (Character symbol) {
+    if (symbol.equals('■')) {
       return new LivingCellFactory();
     }
     return new DeadCellFactory();
   }
+
 }

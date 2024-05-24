@@ -24,7 +24,7 @@ public class RectangularBoard extends Board {
     }
   }
 
-  public RectangularBoard (String configInitial, Integer rows, Integer cols, List<Rule> rules) {
+  public RectangularBoard (int rows, int cols, String configInitial, List<Rule> rules) {
     this.rows = rows;
     this.cols = cols;
     this.rules = rules;
@@ -32,7 +32,7 @@ public class RectangularBoard extends Board {
     configInitial(configInitial);
   }
 
-  private void configInitial(String config){
+  private void configInitial (String config) {
     int count = 0;
     int x = 0;
     int y = 0;
