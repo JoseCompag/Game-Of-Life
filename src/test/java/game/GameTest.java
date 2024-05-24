@@ -67,7 +67,49 @@ public class GameTest {
         "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
     Boolean res = newBoard.equals(newBoardGame.toString());
     assertThat(res).isTrue();
+  }
 
+  @Test
+  public void testGame1() {
+    String configInitial =
+      "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ ■ ■ □ □ ■ ■ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ ■ ■ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ ■ □ ■ ■ □ ■ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ ■ □ ■ ■ □ ■ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ ■ ■ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ ■ ■ □ □ ■ ■ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
+    Board board = new RectangularBoard(15, 20, configInitial, rules);
+    Game game = new Game(board);
+    TerminalOutput output = new TerminalOutput(game);
+    game.start(10);
+    Board newBoardGame = game.getBoard();
+    String newBoard =
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ ■ ■ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ ■ □ □ ■ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ ■ □ □ ■ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ ■ ■ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
+    Boolean res = newBoard.equals(newBoardGame.toString());
+    assertThat(res).isTrue();
   }
 
 
