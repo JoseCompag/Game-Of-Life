@@ -31,7 +31,7 @@ public class BoardTests {
   }
 
   @Test
-  void testBoard(){
+  void testBoard() {
     String configInitial =
       "□ □ □ □ □ □ \n" +
         "□ □ □ ■ ■ □ \n" +
@@ -47,10 +47,8 @@ public class BoardTests {
 
   @ParameterizedTest
   @MethodSource("listBoards1")
-  void testNextBoard1(List<String> boards, String configInitial) {
-
+  void testNextBoard1 (List<String> boards, String configInitial) {
     Board board = new RectangularBoard(6, 6, configInitial, rules);
-
     for (String listBoard : boards) {
       System.out.println(board.toString());
       board = board.nextBoard();
@@ -119,10 +117,8 @@ public class BoardTests {
 
   @ParameterizedTest
   @MethodSource("listBoards2")
-  void testNextBoard2(List<String> boards, String configInitial) {
-
+  void testNextBoard2 (List<String> boards, String configInitial) {
     Board board = new RectangularBoard(8, 8, configInitial, rules);
-
     for (String listBoard : boards) {
       System.out.println(board.toString());
       board = board.nextBoard();
@@ -218,4 +214,5 @@ public class BoardTests {
           "□ □ □ □ □ □ □ □ "+"\n")
     );
   }
+
 }

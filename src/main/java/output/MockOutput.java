@@ -10,13 +10,13 @@ public class MockOutput implements Observer {
   private Board board;
   private Integer generation;
 
-  public MockOutput(Game game) {
+  public MockOutput (Game game) {
     this.game = game;
     game.registerObserver(this);
   }
 
   @Override
-  public void update(Board board, Integer generation) {
+  public void update (Board board, Integer generation) {
     this.board = board;
     this.generation = generation;
     invoked = true;
@@ -33,4 +33,5 @@ public class MockOutput implements Observer {
   public Integer getGeneration() {
     return generation;
   }
+
 }

@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.io.IOException;
-
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,23 +17,12 @@ public class System {
 
     private String path;
 
-    public void setPath(String path) {
+    public void setPath (String path) {
         this.path = path;
     }
 
-    private Properties loadPropertieFile() {
-        try {
-            Properties prop = new Properties();
-            InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
-            prop.load(input);
-            return prop;
-        } catch (IOException e) {
-            throw new RuntimeException("Error reading properties file:" + e.getMessage());
-        }
-    }
-
-    public ArrayList<Rule> loadRules() {
-        Properties prop = loadPropertieFile();
+    public ArrayList<Rule> buildRules() {
+        Properties prop = getPropertieFile();
         String stringNumBirth = prop.getProperty("rule.numBirth");
         String stringNumSurvive = prop.getProperty("rule.numSurvive");
 
@@ -58,11 +46,41 @@ public class System {
             index++;
         }
 
-        ArrayList<Rule> rules = getRuleArrayList(numBirth, numASurvive, numBSurvive);
+        ArrayList<Rule> rules = buildRuleArrayList(numBirth, numASurvive, numBSurvive);
         return rules;
     }
 
-    private static ArrayList<Rule> getRuleArrayList (int numBirth, int numASurvive, int numBSurvive) {
+    public Board buildBoard (List<Rule> rules) {
+        Properties prop = getPropertieFile();
+        String typeBoard = prop.getProperty("board.typeBoard");
+        String rowsString = prop.getProperty("board.rows");
+        String colsString = prop.getProperty("board.cols");
+        //String initialConfigTxt = prop.getProperty("board.initialConfig");
+
+        ArrayList<Integer> paramsSize = new ArrayList<>();
+        int rows = Integer.parseInt(rowsString);
+        int cols = Integer.parseInt(colsString);
+        paramsSize.add(0,rows);
+        paramsSize.add(1,cols);
+        String initialConfig = getInitialConfigTxt();
+
+        BoardFactory boardFactory = new BoardFactory();
+        Board board = boardFactory.createBoard(typeBoard, paramsSize, initialConfig, rules);
+        return board;
+    }
+
+    private Properties getPropertieFile() {
+        try {
+            Properties prop = new Properties();
+            InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
+            prop.load(input);
+            return prop;
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading properties file:" + e.getMessage());
+        }
+    }
+
+    private static ArrayList<Rule> buildRuleArrayList (int numBirth, int numASurvive, int numBSurvive) {
         RuleFactory ruleBirthFactory = new BirthRuleFactory();
         RuleFactory ruleSurviveFactory = new SurviveRuleFactory();
         RuleFactory ruleDeathFactory = new DeathRuleFactory();
@@ -84,27 +102,7 @@ public class System {
         return rules;
     }
 
-    public Board loadBoard (List<Rule> rules) {
-        Properties prop = loadPropertieFile();
-        String typeBoard = prop.getProperty("board.typeBoard");
-        String rowsString = prop.getProperty("board.rows");
-        String colsString = prop.getProperty("board.cols");
-        String initialConfigTxt = prop.getProperty("board.initialConfig");
-
-
-        ArrayList<Integer> paramsSize = new ArrayList<>();
-        int rows = Integer.parseInt(rowsString);
-        int cols = Integer.parseInt(colsString);
-        paramsSize.add(0,rows);
-        paramsSize.add(1,cols);
-        String initialConfig = readInitialConfigTxt(initialConfigTxt);
-
-        BoardFactory boardFactory = new BoardFactory();
-        Board board = boardFactory.createBoard(typeBoard, paramsSize, initialConfig, rules);
-        return board;
-    }
-
-    private String readInitialConfigTxt (String initialConfigTxt) {
+    private String getInitialConfigTxt () {
         try {
             Path path = Paths.get(this.path);
             String initialConfig = Files.readString(path);

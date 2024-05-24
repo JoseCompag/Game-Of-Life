@@ -29,27 +29,7 @@ public class RectangularBoard extends Board {
     this.cols = cols;
     this.rules = rules;
     board = new Cell[rows][cols];
-    configInitial(configInitial);
-  }
-
-  private void configInitial (String config) {
-    int count = 0;
-    int x = 0;
-    int y = 0;
-    while (count < config.length()-1) {
-      if (config.charAt(count) != '\n') {
-        char character = config.charAt(count);
-        if (CellFactoryForBoard.correctCell(character)) {
-          CellFactory cellFactory = CellFactoryForBoard.cellFactory(character);
-          board[x][y] = cellFactory.createCell();
-          y++;
-        }
-      } else {
-        y=0;
-        x++;
-      }
-      count++;
-    }
+    loadConfigInitial(configInitial);
   }
 
   @Override
@@ -70,6 +50,39 @@ public class RectangularBoard extends Board {
     return newBoard;
   }
 
+  @Override
+  public String toString() {
+    String res = "";
+    for (int x = 0; x < rows; x++) {
+      for (int y = 0; y < cols; y++) {
+        res += board[x][y].toString();
+        res += " ";
+      }
+      res += "\n";
+    }
+    return res;
+  }
+
+  private void loadConfigInitial (String config) {
+    int count = 0;
+    int x = 0;
+    int y = 0;
+    while (count < config.length()-1) {
+      if (config.charAt(count) != '\n') {
+        char character = config.charAt(count);
+        if (CellFactoryForBoard.correctCell(character)) {
+          CellFactory cellFactory = CellFactoryForBoard.cellFactory(character);
+          board[x][y] = cellFactory.createCell();
+          y++;
+        }
+      } else {
+        y=0;
+        x++;
+      }
+      count++;
+    }
+  }
+
   private void setCell (int x, int y, Cell cell) {
     board[x][y] = cell;
   }
@@ -84,19 +97,6 @@ public class RectangularBoard extends Board {
       }
     }
     return neighbors;
-  }
-
-  @Override
-  public String toString() {
-    String res = "";
-    for (int x = 0; x < rows; x++) {
-      for (int y = 0; y < cols; y++) {
-        res += board[x][y].toString();
-        res += " ";
-      }
-      res += "\n";
-    }
-    return res;
   }
 
 }
