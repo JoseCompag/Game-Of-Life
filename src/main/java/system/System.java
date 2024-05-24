@@ -11,13 +11,14 @@ import java.io.IOException;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class System {
 
-    private Path path;
+    private String path;
 
-    public void setPath(Path path) {
+    public void setPath(String path) {
         this.path = path;
     }
 
@@ -83,7 +84,7 @@ public class System {
         return rules;
     }
 
-    public Board loadBoard (ArrayList<Rule> rules) {
+    public Board loadBoard (List<Rule> rules) {
         Properties prop = loadPropertieFile();
         String typeBoard = prop.getProperty("board.typeBoard");
         String rowsString = prop.getProperty("board.rows");
@@ -105,7 +106,7 @@ public class System {
 
     private String readInitialConfigTxt (String initialConfigTxt) {
         try {
-            Path path = Paths.get("src/main/resources/firstConfig8x8.txt");
+            Path path = Paths.get(this.path);
             String initialConfig = Files.readString(path);
             return initialConfig;
         } catch (IOException e) {
