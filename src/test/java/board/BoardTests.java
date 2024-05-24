@@ -1,28 +1,16 @@
 package board;
 
-import board.Board;
-import board.RectangularBoard;
-import org.assertj.core.api.AbstractStringAssert;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import rule.*;
-import cell.Cell;
-import cell.DeadCell;
-import cell.LivingCell;
-import org.assertj.core.internal.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
@@ -51,7 +39,7 @@ public class BoardTests {
         "□ ■ ■ □ □ □ \n" +
         "□ ■ ■ □ □ □ \n" +
         "□ □ □ □ □ □ "+"\n";
-    Board board = new RectangularBoard(configInitial, 6, 6, rules);
+    Board board = new RectangularBoard(6, 6, configInitial, rules);
 
     String res = board.toString();
     assertThat(configInitial).isEqualTo(res);
@@ -61,7 +49,7 @@ public class BoardTests {
   @MethodSource("listBoards1")
   void testNextBoard1(List<String> boards, String configInitial) {
 
-    Board board = new RectangularBoard(configInitial, 6, 6, rules);
+    Board board = new RectangularBoard(6, 6, configInitial, rules);
 
     for (String listBoard : boards) {
       System.out.println(board.toString());
@@ -133,7 +121,7 @@ public class BoardTests {
   @MethodSource("listBoards2")
   void testNextBoard2(List<String> boards, String configInitial) {
 
-    Board board = new RectangularBoard(configInitial, 8, 8, rules);
+    Board board = new RectangularBoard(8, 8, configInitial, rules);
 
     for (String listBoard : boards) {
       System.out.println(board.toString());

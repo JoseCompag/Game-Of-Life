@@ -3,11 +3,11 @@ package output;
 import board.Board;
 import game.Game;
 
-public class Output implements Observer {
+public class TerminalOutput implements Observer {
 
   private Game game;
 
-  public Output (Game game) {
+  public TerminalOutput(Game game) {
     this.game = game;
     game.registerObserver (this);
   }

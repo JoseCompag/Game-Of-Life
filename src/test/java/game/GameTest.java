@@ -4,18 +4,13 @@ import board.Board;
 import board.RectangularBoard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-import output.Output;
+import output.TerminalOutput;
 import rule.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class GameTest {
 
@@ -49,9 +44,9 @@ public class GameTest {
           "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
-    Board board = new RectangularBoard(configInitial, 15, 20, rules);
+    Board board = new RectangularBoard(15, 20, configInitial, rules);
     Game game = new Game(board);
-    Output output = new Output(game);
+    TerminalOutput output = new TerminalOutput(game);
     game.start(10);
     Board newBoardGame = game.getBoard();
     String newBoard =
