@@ -60,7 +60,6 @@ public class System {
         String typeBoard = prop.getProperty("board.typeBoard");
         String rowsString = prop.getProperty("board.rows");
         String colsString = prop.getProperty("board.cols");
-        //String initialConfigTxt = prop.getProperty("board.initialConfig");
 
         ArrayList<Integer> paramsSize = new ArrayList<>();
         int rows = Integer.parseInt(rowsString);
@@ -77,7 +76,7 @@ public class System {
     private Properties getPropertieFile() {
         try {
             Properties prop = new Properties();
-            InputStream input = getClass().getClassLoader().getResourceAsStream(configProperties);
+            InputStream input = getClass().getClassLoader().getResourceAsStream(this.configProperties);
             prop.load(input);
             return prop;
         } catch (IOException e) {
@@ -110,8 +109,7 @@ public class System {
     private String getInitialConfigTxt () {
         try {
             Path path = Paths.get(this.path);
-            String initialConfig = Files.readString(path);
-            return initialConfig;
+          return Files.readString(path);
         } catch (IOException e) {
             throw new RuntimeException("Error reading initial config file:" + e.getMessage());
         }
