@@ -15,8 +15,8 @@ import java.util.Properties;
 
 public class System {
 
-    private String path = "src/main/resources/firstConfig8x8.txt";
-    private String configProperties = "config.properties";
+    private String path = "src/main/resources/default.txt";
+    private String configProperties = "configDefault.properties";
 
     public void setPath (String path) {
         this.path = path;

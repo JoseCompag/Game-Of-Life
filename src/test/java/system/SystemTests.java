@@ -57,6 +57,7 @@ public class SystemTests {
   public void systemTests (String path, String expected) {
     System system = new System();
     system.setPath(path);
+    system.setConfigProperties("config.properties");
     List<Rule> rulesExpected = system.buildRules();
     Board board = system.buildBoard(rulesExpected);
     List<Rule> rules = new ArrayList<>();
