@@ -12,6 +12,8 @@ public class Main {
 
     public static void main (String[] args) {
         System system = new System();
+        system.setConfigProperties("configDefault.properties");
+        system.setPath("src/main/resources/default.txt");
         ArrayList<Rule> rules = system.buildRules();
         Board board = system.buildBoard(rules);
         Game game = new Game(board);

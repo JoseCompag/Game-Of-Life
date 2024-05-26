@@ -15,10 +15,15 @@ import java.util.Properties;
 
 public class System {
 
-    private String path;
+    private String path = "src/main/resources/firstConfig8x8.txt";
+    private String configProperties = "config.properties";
 
     public void setPath (String path) {
         this.path = path;
+    }
+
+    public void setConfigProperties (String configProperties) {
+        this.configProperties = configProperties;
     }
 
     public ArrayList<Rule> buildRules() {
@@ -72,7 +77,7 @@ public class System {
     private Properties getPropertieFile() {
         try {
             Properties prop = new Properties();
-            InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
+            InputStream input = getClass().getClassLoader().getResourceAsStream(configProperties);
             prop.load(input);
             return prop;
         } catch (IOException e) {

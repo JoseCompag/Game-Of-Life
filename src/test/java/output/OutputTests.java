@@ -16,13 +16,6 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class OutputTests {
 
-  static Stream<Arguments> outputs() {
-    return Stream.of(
-      //
-      arguments()
-    );
-  }
-
   @Test
   public void output() {
     Board board = new RectangularBoard(8, 8, new ArrayList<Rule>());
