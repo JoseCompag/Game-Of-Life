@@ -1,11 +1,11 @@
 package rule;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class DeathRuleFactory extends RuleFactory {
 
     @Override
-    public Rule createRule (ArrayList<Integer> params) {
+    public Rule createRule (List<Integer> params) {
         return new DeathRule();
     }
 

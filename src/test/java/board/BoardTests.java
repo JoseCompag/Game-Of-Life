@@ -14,8 +14,6 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-
-
 public class BoardTests {
 
   List<Rule> rules = new ArrayList<>();

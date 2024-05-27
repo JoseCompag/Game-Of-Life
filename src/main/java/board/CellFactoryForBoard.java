@@ -6,7 +6,7 @@ import cell.LivingCellFactory;
 
 public class CellFactoryForBoard {
 
-  public static boolean correctCell (Character symbol) {
+  public static boolean validateCell (Character symbol) {
     if (symbol.equals('■')) {
       return true;
     }
@@ -16,7 +16,7 @@ public class CellFactoryForBoard {
     return false;
   }
 
-  public static CellFactory cellFactory (Character symbol) {
+  public static CellFactory createCellFactoryFromSymbol(Character symbol) {
     if (symbol.equals('■')) {
       return new LivingCellFactory();
     }

@@ -29,7 +29,7 @@ public class RectangularBoard extends Board {
     this.cols = cols;
     this.rules = rules;
     board = new Cell[rows][cols];
-    loadConfigInitial(configInitial);
+    loadInitialConfig(configInitial);
   }
 
   @Override
@@ -63,15 +63,15 @@ public class RectangularBoard extends Board {
     return res;
   }
 
-  private void loadConfigInitial (String config) {
+  private void loadInitialConfig (String config) {
     int count = 0;
     int x = 0;
     int y = 0;
     while (count < config.length()-1) {
       if (config.charAt(count) != '\n') {
         char character = config.charAt(count);
-        if (CellFactoryForBoard.correctCell(character)) {
-          CellFactory cellFactory = CellFactoryForBoard.cellFactory(character);
+        if (CellFactoryForBoard.validateCell(character)) {
+          CellFactory cellFactory = CellFactoryForBoard.createCellFactoryFromSymbol(character);
           board[x][y] = cellFactory.createCell();
           y++;
         }

@@ -2,10 +2,8 @@ package game;
 
 import board.Board;
 import output.Observer;
-import rule.Rule;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Game extends Subject {
 

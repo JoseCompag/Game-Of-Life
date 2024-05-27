@@ -22,7 +22,7 @@ public class SystemTests {
   static Stream<Arguments> paths() {
     return Stream.of(
       //
-      arguments("src/main/resources/firstConfig8x8.txt",
+      arguments("configTest1.properties",
           "□ □ □ □ □ □ □ □ \n" +
           "□ ■ ■ □ □ ■ ■ □ \n" +
           "□ □ □ ■ ■ □ □ □ \n" +
@@ -31,7 +31,7 @@ public class SystemTests {
           "□ □ □ ■ ■ □ □ □ \n" +
           "□ ■ ■ □ □ ■ ■ □ \n" +
           "□ □ □ □ □ □ □ □ "+"\n"),
-      arguments("src/main/resources/secondConfig8x8.txt",
+      arguments("configTest2.properties",
           "□ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ \n" +
@@ -40,7 +40,7 @@ public class SystemTests {
           "□ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ "+"\n"),
-      arguments("src/main/resources/thirdConfig8x8.txt",
+      arguments("configTest3.properties",
           "□ □ □ □ □ □ □ □ \n" +
           "□ □ □ ■ ■ □ □ □ \n" +
           "□ □ ■ □ □ ■ □ □ \n" +
@@ -54,10 +54,9 @@ public class SystemTests {
 
   @ParameterizedTest
   @MethodSource("paths")
-  public void systemTests (String path, String expected) {
+  public void systemTests (String configProperties, String expected) {
     System system = new System();
-    system.setPath(path);
-    system.setConfigProperties("config.properties");
+    system.setConfigProperties(configProperties);
     List<Rule> rulesExpected = system.buildRules();
     Board board = system.buildBoard(rulesExpected);
     List<Rule> rules = new ArrayList<>();

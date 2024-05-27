@@ -15,12 +15,9 @@ import java.util.Properties;
 
 public class System {
 
-    private String path = "src/main/resources/default.txt";
+    private String path = "src/main/resources/";
     private String configProperties = "configDefault.properties";
 
-    public void setPath (String path) {
-        this.path = path;
-    }
 
     public void setConfigProperties (String configProperties) {
         this.configProperties = configProperties;
@@ -35,7 +32,7 @@ public class System {
         int numASurvive = 0;
         int numBSurvive = 0;
 
-        Character character;
+        char character;
         int index = 0;
         int stringLenght = stringNumSurvive.length();
         boolean firstNumRead = false;
@@ -60,13 +57,14 @@ public class System {
         String typeBoard = prop.getProperty("board.typeBoard");
         String rowsString = prop.getProperty("board.rows");
         String colsString = prop.getProperty("board.cols");
+        String initialConfigTxt = prop.getProperty("board.initialConfig");
 
         ArrayList<Integer> paramsSize = new ArrayList<>();
         int rows = Integer.parseInt(rowsString);
         int cols = Integer.parseInt(colsString);
         paramsSize.add(0,rows);
         paramsSize.add(1,cols);
-        String initialConfig = getInitialConfigTxt();
+        String initialConfig = getInitialConfigTxt(initialConfigTxt);
 
         BoardFactory boardFactory = new BoardFactory();
         Board board = boardFactory.createBoard(typeBoard, paramsSize, initialConfig, rules);
@@ -106,8 +104,9 @@ public class System {
         return rules;
     }
 
-    private String getInitialConfigTxt () {
+    private String getInitialConfigTxt (String initialConfigTxt) {
         try {
+            this.path += initialConfigTxt;
             Path path = Paths.get(this.path);
           return Files.readString(path);
         } catch (IOException e) {

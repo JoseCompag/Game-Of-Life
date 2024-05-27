@@ -1,11 +1,11 @@
 package rule;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class BirthRuleFactory extends RuleFactory {
 
     @Override
-    public Rule createRule (ArrayList<Integer> params) {
+    public Rule createRule (List<Integer> params) {
         int num = params.get(0);
         return new BirthRule(num);
     }
