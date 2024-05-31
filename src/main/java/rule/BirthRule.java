@@ -7,10 +7,10 @@ import java.util.List;
 
 public class BirthRule extends Rule {
 
-  private int numOfLiveCellsForBirth;
+  private List<Integer> numOfLiveCellsForBirth;
 
-  public BirthRule (int numOfLiveCellsForBirth) {
-    this.numOfLiveCellsForBirth = numOfLiveCellsForBirth;
+  public BirthRule (List<Integer> params) {
+    this.numOfLiveCellsForBirth = params;
   }
 
   @Override
@@ -24,7 +24,10 @@ public class BirthRule extends Rule {
         count++;
       }
     }
-    return count == this.numOfLiveCellsForBirth;
+    for (Integer integer : numOfLiveCellsForBirth) {
+      return count == integer;
+    }
+    return false;
   }
 
   @Override

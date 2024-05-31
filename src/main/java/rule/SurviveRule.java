@@ -8,12 +8,10 @@ import java.util.List;
 
 public class SurviveRule extends Rule {
 
-  private int numAOfLiveCellsForBirth;
-  private int numBOfLiveCellsForBirth;
+  private List<Integer> numOfLiveCellsForSurvive;
 
-  public SurviveRule (int numAOfLiveCellsForBirth, int numBOfLiveCellsForBirth) {
-    this.numAOfLiveCellsForBirth = numAOfLiveCellsForBirth;
-    this.numBOfLiveCellsForBirth = numBOfLiveCellsForBirth;
+  public SurviveRule (List<Integer> params) {
+    this.numOfLiveCellsForSurvive = params;
   }
 
   @Override
@@ -27,7 +25,10 @@ public class SurviveRule extends Rule {
        count++;
      }
     }
-    return count == this.numAOfLiveCellsForBirth || count == this.numBOfLiveCellsForBirth ;
+    for (Integer integer : numOfLiveCellsForSurvive) {
+      return count == integer;
+    }
+    return false;
   }
 
   @Override
