@@ -11,6 +11,7 @@ public class RectangularBoard extends Board {
   private Cell[][] board;
   private int rows;
   private int cols;
+  private CellFactory cellFactory;
 
   public RectangularBoard (int rows, int cols, List<Rule> rules) {
     this.rows = rows;
@@ -24,10 +25,11 @@ public class RectangularBoard extends Board {
     }
   }
 
-  public RectangularBoard (int rows, int cols, String configInitial, List<Rule> rules) {
+  public RectangularBoard (int rows, int cols, String configInitial, List<Rule> rules, CellFactory cellFactory) {
     this.rows = rows;
     this.cols = cols;
     this.rules = rules;
+    this.cellFactory = cellFactory;
     board = new Cell[rows][cols];
     loadInitialConfig(configInitial);
   }
@@ -70,9 +72,8 @@ public class RectangularBoard extends Board {
     while (count < config.length()-1) {
       if (config.charAt(count) != '\n') {
         char character = config.charAt(count);
-        if (CellFactoryForBoard.validateCell(character)) {
-          CellFactory cellFactory = CellFactoryForBoard.createCellFactoryFromSymbol(character);
-          board[x][y] = cellFactory.createCell();
+        if (character != ' ' && character != '\r') {
+          board[x][y] = cellFactory.createCell(character);
           y++;
         }
       } else {

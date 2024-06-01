@@ -5,7 +5,7 @@ import system.System;
 public class Main {
 
     public static void main (String[] args) {
-        System system = new System("configDefault.properties", 20);
+        System system = new System("configDefault.properties", 29);
         system.start();
     }
 

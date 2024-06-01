@@ -2,6 +2,7 @@ package game;
 
 import board.Board;
 import board.RectangularBoard;
+import cell.CellFactoryTraditionalGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import output.TerminalOutput;
@@ -21,13 +22,14 @@ public class HightlifeTest {
 
     @BeforeEach
     public void setUp() {
-        ArrayList<Integer> params = new ArrayList<>();
-        params.add(3);
-        Rule rule1 = new BirthRule(params);
-        params.clear();
-        params.add(0,3);
-        params.add(1,2);
-        Rule rule2 = new SurviveRule(params);
+        ArrayList<Integer> paramsForBirthRule = new ArrayList<>();
+        paramsForBirthRule.add(3);
+        paramsForBirthRule.add(6);
+        Rule rule1 = new BirthRule(paramsForBirthRule);
+        ArrayList<Integer> paramsForSurviveRule = new ArrayList<>();
+        paramsForSurviveRule.add(3);
+        paramsForSurviveRule.add(2);
+        Rule rule2 = new SurviveRule(paramsForSurviveRule);
         Rule rule3 = new DeathRule();
         rules.add(rule1);
         rules.add(rule2);
@@ -41,38 +43,39 @@ public class HightlifeTest {
                 "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
                 "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
                 "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+                "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+                "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
                 "□ □ □ □ □ □ □ □ □ ■ ■ ■ □ □ □ □ □ □ □ □ \n" +
-                "□ □ □ □ □ □ □ □ ■ □ □ □ ■ □ □ □ □ □ □ □ \n" +
-                "□ □ □ □ □ □ □ ■ □ □ □ □ □ ■ □ □ □ □ □ □ \n" +
-                "□ □ □ □ □ □ □ ■ □ □ □ □ □ ■ □ □ □ □ □ □ \n" +
-                "□ □ □ □ □ □ □ ■ □ □ □ □ □ ■ □ □ □ □ □ □ \n" +
-                "□ □ □ □ □ □ □ □ ■ □ □ □ ■ □ □ □ □ □ □ □ \n" +
-                "□ □ □ □ □ □ □ □ □ ■ ■ ■ □ □ □ □ □ □ □ □ \n" +
+                "□ □ □ □ □ □ □ □ ■ □ □ □ □ □ □ □ □ □ □ □ \n" +
+                "□ □ □ □ □ □ □ □ ■ □ □ □ □ □ □ □ □ □ □ □ \n" +
+                "□ □ □ □ □ □ □ □ ■ □ □ □ □ □ □ □ □ □ □ □ \n" +
+                "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
                 "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
                 "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
                 "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
                 "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
-        Board board = new RectangularBoard(15, 20, configInitial, rules);
+        Board board = new RectangularBoard(15, 20, configInitial, rules, new CellFactoryTraditionalGame());
         Game game = new Game(board);
         TerminalOutput output = new TerminalOutput(game);
-        game.start(10);
+        game.start(29);
         Board newBoardGame = game.getBoard();
         String newBoard =
-                "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
-                        "□ □ □ □ □ □ □ □ □ □ ■ □ □ □ □ □ □ □ □ □ \n" +
-                        "□ □ □ □ □ □ □ □ □ ■ □ ■ □ □ □ □ □ □ □ □ \n" +
-                        "□ □ □ □ □ □ □ □ □ ■ □ ■ □ □ □ □ □ □ □ □ \n" +
-                        "□ □ □ □ □ □ □ □ □ □ ■ □ □ □ □ □ □ □ □ □ \n" +
+                        "□ □ □ □ □ ■ ■ ■ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+                        "□ □ □ □ ■ □ □ □ ■ □ □ □ □ □ □ □ □ □ □ □ \n" +
+                        "□ □ □ ■ □ □ □ □ ■ □ □ □ □ □ □ □ □ □ □ □ \n" +
+                        "□ □ ■ □ □ ■ □ □ ■ □ □ □ □ □ □ □ □ □ □ □ \n" +
+                        "□ □ ■ □ □ □ □ ■ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+                        "□ □ ■ □ □ □ ■ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
+                        "□ □ □ ■ ■ ■ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
                         "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
-                        "□ □ □ □ □ ■ ■ □ □ □ □ □ □ □ ■ ■ □ □ □ □ \n" +
-                        "□ □ □ □ ■ □ □ ■ □ □ □ □ □ ■ □ □ ■ □ □ □ \n" +
-                        "□ □ □ □ □ ■ ■ □ □ □ □ □ □ □ ■ ■ □ □ □ □ \n" +
-                        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
-                        "□ □ □ □ □ □ □ □ □ □ ■ □ □ □ □ □ □ □ □ □ \n" +
-                        "□ □ □ □ □ □ □ □ □ ■ □ ■ □ □ □ □ □ □ □ □ \n" +
-                        "□ □ □ □ □ □ □ □ □ ■ □ ■ □ □ □ □ □ □ □ □ \n" +
-                        "□ □ □ □ □ □ □ □ □ □ ■ □ □ □ □ □ □ □ □ □ \n" +
-                        "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
+                        "□ □ □ □ □ □ □ □ □ □ □ □ □ ■ ■ ■ □ □ □ □ \n" +
+                        "□ □ □ □ □ □ □ □ □ □ □ □ ■ □ □ □ ■ □ □ □ \n" +
+                        "□ □ □ □ □ □ □ □ □ □ □ ■ □ □ □ □ ■ □ □ □ \n" +
+                        "□ □ □ □ □ □ □ □ □ □ ■ □ □ ■ □ □ ■ □ □ □ \n" +
+                        "□ □ □ □ □ □ □ □ □ □ ■ □ □ □ □ ■ □ □ □ □ \n" +
+                        "□ □ □ □ □ □ □ □ □ □ ■ □ □ □ ■ □ □ □ □ □ \n" +
+                        "□ □ □ □ □ □ □ □ □ □ □ ■ ■ ■ □ □ □ □ □ □ "+"\n";
+
         Boolean res = newBoard.equals(newBoardGame.toString());
         assertThat(res).isTrue();
     }

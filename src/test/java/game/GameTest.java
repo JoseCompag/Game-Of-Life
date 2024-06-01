@@ -2,6 +2,7 @@ package game;
 
 import board.Board;
 import board.RectangularBoard;
+import cell.CellFactoryTraditionalGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import output.TerminalOutput;
@@ -49,7 +50,7 @@ public class GameTest {
           "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
-    Board board = new RectangularBoard(15, 20, configInitial, rules);
+    Board board = new RectangularBoard(15, 20, configInitial, rules, new CellFactoryTraditionalGame());
     Game game = new Game(board);
     TerminalOutput output = new TerminalOutput(game);
     game.start(10);
@@ -92,7 +93,7 @@ public class GameTest {
         "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
         "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
         "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
-    Board board = new RectangularBoard(15, 20, configInitial, rules);
+    Board board = new RectangularBoard(15, 20, configInitial, rules, new CellFactoryTraditionalGame());
     Game game = new Game(board);
     TerminalOutput output = new TerminalOutput(game);
     game.start(10);

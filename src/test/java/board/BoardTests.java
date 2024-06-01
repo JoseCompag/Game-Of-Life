@@ -1,5 +1,7 @@
 package board;
 
+import cell.CellFactory;
+import cell.CellFactoryTraditionalGame;
 import org.junit.jupiter.api.BeforeEach;
 import rule.*;
 import org.junit.jupiter.api.Test;
@@ -42,7 +44,7 @@ public class BoardTests {
         "□ ■ ■ □ □ □ \n" +
         "□ ■ ■ □ □ □ \n" +
         "□ □ □ □ □ □ "+"\n";
-    Board board = new RectangularBoard(6, 6, configInitial, rules);
+    Board board = new RectangularBoard(6, 6, configInitial, rules, new CellFactoryTraditionalGame());
     String res = board.toString();
     assertThat(configInitial).isEqualTo(res);
   }
@@ -50,7 +52,7 @@ public class BoardTests {
   @ParameterizedTest
   @MethodSource("listBoards1")
   void testNextBoard1 (List<String> boards, String configInitial) {
-    Board board = new RectangularBoard(6, 6, configInitial, rules);
+    Board board = new RectangularBoard(6, 6, configInitial, rules, new CellFactoryTraditionalGame());
     for (String listBoard : boards) {
       System.out.println(board.toString());
       board = board.nextBoard();
@@ -120,7 +122,7 @@ public class BoardTests {
   @ParameterizedTest
   @MethodSource("listBoards2")
   void testNextBoard2 (List<String> boards, String configInitial) {
-    Board board = new RectangularBoard(8, 8, configInitial, rules);
+    Board board = new RectangularBoard(8, 8, configInitial, rules, new CellFactoryTraditionalGame());
     for (String listBoard : boards) {
       System.out.println(board.toString());
       board = board.nextBoard();
