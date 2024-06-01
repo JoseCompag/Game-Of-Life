@@ -3,6 +3,7 @@ package rule;
 import cell.Cell;
 import cell.LivingCell;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BirthRule extends Rule {
@@ -25,7 +26,9 @@ public class BirthRule extends Rule {
       }
     }
     for (Integer integer : numOfLiveCellsForBirth) {
-      return count == integer;
+      if (count == integer) {
+        return true;
+      }
     }
     return false;
   }

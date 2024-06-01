@@ -13,13 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class System {
+public class ParserConfig {
 
     private String path = "src/main/resources/";
-    private String configProperties = "configDefault.properties";
+    private String configProperties;
 
-
-    public void setConfigProperties (String configProperties) {
+    public ParserConfig (String configProperties) {
         this.configProperties = configProperties;
     }
 

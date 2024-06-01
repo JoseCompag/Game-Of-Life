@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 
-public class SystemTests {
+public class ParserConfigTests {
 
   static Stream<Arguments> paths() {
     return Stream.of(
@@ -55,10 +55,10 @@ public class SystemTests {
   @ParameterizedTest
   @MethodSource("paths")
   public void systemTests (String configProperties, String expected) {
-    System system = new System();
-    system.setConfigProperties(configProperties);
-    List<Rule> rulesExpected = system.buildRules();
-    Board board = system.buildBoard(rulesExpected);
+    ParserConfig parserConfig = new ParserConfig();
+    parserConfig.setConfigProperties(configProperties);
+    List<Rule> rulesExpected = parserConfig.buildRules();
+    Board board = parserConfig.buildBoard(rulesExpected);
     List<Rule> rules = new ArrayList<>();
     rules.add(new BirthRule(2));
     rules.add(new SurviveRule(2,3));

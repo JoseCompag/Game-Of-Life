@@ -26,7 +26,9 @@ public class SurviveRule extends Rule {
      }
     }
     for (Integer integer : numOfLiveCellsForSurvive) {
-      return count == integer;
+      if (count == integer) {
+        return true;
+      }
     }
     return false;
   }
