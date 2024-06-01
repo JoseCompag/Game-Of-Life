@@ -1,9 +1,5 @@
 package system;
 
-import board.Board;
-import board.BoardFactory;
-import rule.*;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
@@ -13,67 +9,53 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class ParserConfig {
+public class Config {
+
+    public String typeBoard;
+    public int rows;
+    public int cols;
+    public String initialConfig;
+    public List<Integer> numOfLiveCellsToBirth;
+    public List<Integer> numOfLiveCellsToSurvive;
 
     private String path = "src/main/resources/";
-    private String configProperties;
+    private String nameConfigProperties;
 
-    public ParserConfig (String configProperties) {
-        this.configProperties = configProperties;
+    public Config(String nameConfigProperties) {
+        this.nameConfigProperties = nameConfigProperties;
     }
 
-    public ArrayList<Rule> buildRules() {
+    public void loadConfig(){
+        parseRuleConfig();
+        parseBoardConfig();
+    }
+
+    private void parseRuleConfig() {
         Properties prop = getPropertieFile();
         String stringNumBirth = prop.getProperty("rule.numBirth");
         String stringNumSurvive = prop.getProperty("rule.numSurvive");
 
-        int numBirth = Integer.parseInt(stringNumBirth);
-        int numASurvive = 0;
-        int numBSurvive = 0;
-
-        char character;
-        int index = 0;
-        int stringLenght = stringNumSurvive.length();
-        boolean firstNumRead = false;
-        while (index < stringLenght) {
-            character = stringNumSurvive.charAt(index);
-            if (Character.isDigit(character) & !firstNumRead){
-                numASurvive = numASurvive * 10 + (character - '0');
-            } else if ((Character.isDigit(character) & firstNumRead)) {
-                numBSurvive = numBSurvive * 10 + (character - '0');
-            } else {
-                firstNumRead = true;
-            }
-            index++;
-        }
-
-        ArrayList<Rule> rules = buildRuleArrayList(numBirth, numASurvive, numBSurvive);
-        return rules;
+        this.numOfLiveCellsToBirth = stringToIntegerArray(stringNumBirth);
+        this.numOfLiveCellsToSurvive = stringToIntegerArray(stringNumSurvive);
     }
 
-    public Board buildBoard (List<Rule> rules) {
+    private void parseBoardConfig (){
         Properties prop = getPropertieFile();
-        String typeBoard = prop.getProperty("board.typeBoard");
-        String rowsString = prop.getProperty("board.rows");
-        String colsString = prop.getProperty("board.cols");
-        String initialConfigTxt = prop.getProperty("board.initialConfig");
+        String stringTypeBoard = prop.getProperty("board.typeBoard");
+        String stringRows = prop.getProperty("board.rows");
+        String stringCols = prop.getProperty("board.cols");
+        String stringNameInitialConfig = prop.getProperty("board.nameInitialConfig");
 
-        ArrayList<Integer> paramsSize = new ArrayList<>();
-        int rows = Integer.parseInt(rowsString);
-        int cols = Integer.parseInt(colsString);
-        paramsSize.add(0,rows);
-        paramsSize.add(1,cols);
-        String initialConfig = getInitialConfigTxt(initialConfigTxt);
-
-        BoardFactory boardFactory = new BoardFactory();
-        Board board = boardFactory.createBoard(typeBoard, paramsSize, initialConfig, rules);
-        return board;
+        this.typeBoard = stringTypeBoard;
+        this.rows = Integer.parseInt(stringRows);
+        this.cols = Integer.parseInt(stringCols);
+        this.initialConfig = getInitialConfig(stringNameInitialConfig);
     }
 
     private Properties getPropertieFile() {
         try {
             Properties prop = new Properties();
-            InputStream input = getClass().getClassLoader().getResourceAsStream(this.configProperties);
+            InputStream input = getClass().getClassLoader().getResourceAsStream(this.nameConfigProperties);
             prop.load(input);
             return prop;
         } catch (IOException e) {
@@ -81,33 +63,46 @@ public class ParserConfig {
         }
     }
 
-    private static ArrayList<Rule> buildRuleArrayList (int numBirth, int numASurvive, int numBSurvive) {
-        RuleFactory ruleBirthFactory = new BirthRuleFactory();
-        RuleFactory ruleSurviveFactory = new SurviveRuleFactory();
-        RuleFactory ruleDeathFactory = new DeathRuleFactory();
+    private static List<Integer> stringToIntegerArray (String string) {
+        List<Integer> res = new ArrayList<>();
+        int numbersAddedCount = 0;
+        List<String> scannedNumberArrayList = new ArrayList<>();
+        boolean scanANumber = false;
 
-        ArrayList<Integer> params = new ArrayList<>();
-        params.add(0,numBirth);
-        BirthRule birthRule = (BirthRule) ruleBirthFactory.createRule(params);
-        params.clear();
-        params.add(0, numASurvive);
-        params.add(1, numBSurvive);
-        SurviveRule surviveRule = (SurviveRule) ruleSurviveFactory.createRule(params);
-        params.clear();
-        DeathRule deathRule = (DeathRule) ruleDeathFactory.createRule(params);
-
-        ArrayList<Rule> rules = new ArrayList<>();
-        rules.add(0,birthRule);
-        rules.add(1,surviveRule);
-        rules.add(2,deathRule);
-        return rules;
+        for (int i = 0; i < string.length() ; i++) {
+            Character stringAtIndexI = string.charAt(i);
+            if (Character.isDigit(stringAtIndexI)) {
+                scannedNumberArrayList.add(String.valueOf(stringAtIndexI));
+                scanANumber = true;
+            } else {
+                if (scanANumber) {
+                    res.add(numbersAddedCount, newNumberFromArrayList(scannedNumberArrayList));
+                    scannedNumberArrayList.clear();
+                    numbersAddedCount++;
+                    scanANumber = false;
+                }
+            }
+        }
+        res.add(numbersAddedCount, newNumberFromArrayList(scannedNumberArrayList));
+        return res;
     }
 
-    private String getInitialConfigTxt (String initialConfigTxt) {
+    private static int newNumberFromArrayList (List<String> scannedNumberArrayList) {
+        int newNumberInt;
+        String newNumberString = "";
+        for (String scannedString : scannedNumberArrayList) {
+            newNumberString += scannedString;
+        }
+        newNumberInt = Integer.parseInt(newNumberString);
+        return newNumberInt;
+    }
+
+    private String getInitialConfig (String nameInitialConfigTxt) {
         try {
-            this.path += initialConfigTxt;
+            this.path += nameInitialConfigTxt;
             Path path = Paths.get(this.path);
-          return Files.readString(path);
+            String string = Files.readString(path);
+            return string;
         } catch (IOException e) {
             throw new RuntimeException("Error reading initial config file:" + e.getMessage());
         }

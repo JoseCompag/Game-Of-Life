@@ -1,22 +1,12 @@
 package main;
 
-import board.Board;
-import game.Game;
-import output.TerminalOutput;
-import rule.Rule;
 import system.System;
-
-import java.util.ArrayList;
 
 public class Main {
 
     public static void main (String[] args) {
-        System system = new System();
-        ArrayList<Rule> rules = system.buildRules();
-        Board board = system.buildBoard(rules);
-        Game game = new Game(board);
-        TerminalOutput output = new TerminalOutput(game);
-        game.start(20);
+        System system = new System("configDefault.properties", 20);
+        system.start();
     }
 
 }

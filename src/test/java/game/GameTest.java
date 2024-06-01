@@ -18,8 +18,13 @@ public class GameTest {
 
   @BeforeEach
   public void setUp() {
-    Rule rule1 = new BirthRule(3);
-    Rule rule2 = new SurviveRule(3,2);
+    ArrayList<Integer> paramsForBirthRule = new ArrayList<>();
+    paramsForBirthRule.add(3);
+    Rule rule1 = new BirthRule(paramsForBirthRule);
+    ArrayList<Integer> paramsForSurviveRule = new ArrayList<>();
+    paramsForSurviveRule.add(3);
+    paramsForSurviveRule.add(2);
+    Rule rule2 = new SurviveRule(paramsForSurviveRule);
     Rule rule3 = new DeathRule();
     rules.add(rule1);
     rules.add(rule2);

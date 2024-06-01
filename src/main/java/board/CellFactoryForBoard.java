@@ -4,7 +4,7 @@ import cell.CellFactory;
 import cell.DeadCellFactory;
 import cell.LivingCellFactory;
 
-public class CellFactoryForBoard {
+public class  CellFactoryForBoard {
 
   public static boolean validateCell (Character symbol) {
     if (symbol.equals('■')) {

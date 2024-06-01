@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -32,7 +33,10 @@ public class RuleTests {
   @ParameterizedTest
   @MethodSource("listSurviveRule")
   void testSurviveRule (List<Cell> cells, Cell cell) {
-    Rule rule1 = new SurviveRule(2, 3);
+    ArrayList<Integer> params = new ArrayList<>();
+    params.add(0,2);
+    params.add(1,3);
+    Rule rule1 = new SurviveRule(params);
     Boolean res = rule1.validate(new LivingCell(), cells);
     Cell cellRes = rule1.apply();
     assertThat(res).isEqualTo(true);
@@ -56,7 +60,9 @@ public class RuleTests {
   @ParameterizedTest
   @MethodSource("listBirthRule")
   void testBirthRule (List<Cell> cells, Cell cell) {
-    Rule rule1 = new BirthRule(4);
+    ArrayList<Integer> params = new ArrayList<>();
+    params.add(4);
+    Rule rule1 = new BirthRule(params);
     Boolean res = rule1.validate(new DeadCell(), cells);
     Cell cellRes = rule1.apply();
     assertThat(res).isEqualTo(true);
