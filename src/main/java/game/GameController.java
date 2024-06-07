@@ -14,7 +14,6 @@ public class GameController extends Subject {
 
   public GameController(Board board) {
     observers = new ArrayList<Observer>();
-    this.board = board;
   }
 
   public void setBoard(Board board) {

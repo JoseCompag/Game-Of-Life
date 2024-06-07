@@ -50,10 +50,6 @@ public class RectangularBoard extends Board {
     return newBoard;
   }
 
-  public void setRules(List<Rule> rules){
-    this.rules = rules;
-  }
-
   @Override
   public String toString() {
     String res = "";

@@ -8,18 +8,14 @@ import java.util.List;
 
 public class ColorisedFactory implements AbstracFactory {
 
+
     @Override
-    public Cell createCell() {
+    public Board createBoardFactory(Integer rows, Integer cols, String configInitial) {
         return null;
     }
 
     @Override
-    public Board createBoard() {
-        return null;
-    }
-
-    @Override
-    public List<Rule> createRules() {
+    public List<Rule> createRuleFactory() {
         return List.of();
     }
 }

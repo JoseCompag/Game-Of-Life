@@ -5,11 +5,11 @@ import game.GameController;
 
 public class TerminalOutput implements Observer {
 
-  private GameController game;
+  private GameController gameController;
 
-  public TerminalOutput (GameController game) {
-    this.game = game;
-    game.registerObserver(this);
+  public TerminalOutput (GameController gameController) {
+    this.gameController = gameController;
+    gameController.registerObserver(this);
   }
 
   @Override
