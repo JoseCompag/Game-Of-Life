@@ -51,7 +51,7 @@ public class GameTest {
           "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
     Board board = new RectangularBoard(15, 20, configInitial, rules, new CellFactoryTraditionalGame());
-    Game game = new Game(board);
+    GameController game = new GameController(board);
     TerminalOutput output = new TerminalOutput(game);
     game.start(10);
     Board newBoardGame = game.getBoard();
@@ -94,7 +94,7 @@ public class GameTest {
         "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
         "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
     Board board = new RectangularBoard(15, 20, configInitial, rules, new CellFactoryTraditionalGame());
-    Game game = new Game(board);
+    GameController game = new GameController(board);
     TerminalOutput output = new TerminalOutput(game);
     game.start(10);
     Board newBoardGame = game.getBoard();

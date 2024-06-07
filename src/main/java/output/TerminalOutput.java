@@ -1,13 +1,13 @@
 package output;
 
 import board.Board;
-import game.Game;
+import game.GameController;
 
 public class TerminalOutput implements Observer {
 
-  private Game game;
+  private GameController game;
 
-  public TerminalOutput (Game game) {
+  public TerminalOutput (GameController game) {
     this.game = game;
     game.registerObserver(this);
   }

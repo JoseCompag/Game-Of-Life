@@ -1,12 +1,12 @@
 package main;
 
-import system.System;
+import system.Game;
 
 public class Main {
 
     public static void main (String[] args) {
-        System system = new System("configDefault.properties", 29);
-        system.start();
+        Game game = new Game("configDefault.properties", 20);
+        game.start();
     }
 
 }

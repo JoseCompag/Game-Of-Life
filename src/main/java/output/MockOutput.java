@@ -1,16 +1,16 @@
 package output;
 
 import board.Board;
-import game.Game;
+import game.GameController;
 
 public class MockOutput implements Observer {
 
   private boolean invoked = false;
-  private Game game;
+  private GameController game;
   private Board board;
   private Integer generation;
 
-  public MockOutput (Game game) {
+  public MockOutput (GameController game) {
     this.game = game;
     game.registerObserver(this);
   }

@@ -5,13 +5,19 @@ import output.Observer;
 
 import java.util.ArrayList;
 
-public class Game extends Subject {
+public class GameController extends Subject {
 
   private Board board;
   private Integer generation;
 
-  public Game (Board board) {
+  public GameController() {}
+
+  public GameController(Board board) {
     observers = new ArrayList<Observer>();
+    this.board = board;
+  }
+
+  public void setBoard(Board board) {
     this.board = board;
   }
 

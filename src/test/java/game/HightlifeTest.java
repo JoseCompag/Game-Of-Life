@@ -55,7 +55,7 @@ public class HightlifeTest {
                 "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
                 "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
         Board board = new RectangularBoard(15, 20, configInitial, rules, new CellFactoryTraditionalGame());
-        Game game = new Game(board);
+        GameController game = new GameController(board);
         TerminalOutput output = new TerminalOutput(game);
         game.start(29);
         Board newBoardGame = game.getBoard();

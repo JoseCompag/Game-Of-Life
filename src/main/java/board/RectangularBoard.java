@@ -13,10 +13,9 @@ public class RectangularBoard extends Board {
   private int cols;
   private CellFactory cellFactory;
 
-  public RectangularBoard (int rows, int cols, List<Rule> rules) {
+  public RectangularBoard (int rows, int cols) {
     this.rows = rows;
     this.cols = cols;
-    this.rules = rules;
     board = new Cell[rows][cols];
     for (int x = 0; x < rows; x++) {
       for (int y = 0; y < cols; y++) {
@@ -25,10 +24,9 @@ public class RectangularBoard extends Board {
     }
   }
 
-  public RectangularBoard (int rows, int cols, String configInitial, List<Rule> rules, CellFactory cellFactory) {
+  public RectangularBoard (int rows, int cols, String configInitial, CellFactory cellFactory) {
     this.rows = rows;
     this.cols = cols;
-    this.rules = rules;
     this.cellFactory = cellFactory;
     board = new Cell[rows][cols];
     loadInitialConfig(configInitial);
@@ -36,7 +34,7 @@ public class RectangularBoard extends Board {
 
   @Override
   public Board nextBoard () {
-    RectangularBoard newBoard = new RectangularBoard(rows, cols, rules);
+    RectangularBoard newBoard = new RectangularBoard(rows, cols);
     for (int x = 0; x < rows; x++) {
       for (int y = 0; y < cols; y++) {
         for (Rule rule : rules) {
@@ -50,6 +48,10 @@ public class RectangularBoard extends Board {
       }
     }
     return newBoard;
+  }
+
+  public void setRules(List<Rule> rules){
+    this.rules = rules;
   }
 
   @Override
