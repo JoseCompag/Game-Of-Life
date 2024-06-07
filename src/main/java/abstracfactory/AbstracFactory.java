@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AbstracFactory {
 
+    Board createBoard(Integer rows, Integer cols, String configInitial);
+    List<Rule> createRule();
 
-    Board createBoardFactory(Integer rows, Integer cols, String configInitial);
-    List<Rule> createRuleFactory();
 }

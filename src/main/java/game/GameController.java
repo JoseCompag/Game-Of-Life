@@ -10,13 +10,12 @@ public class GameController extends Subject {
   private Board board;
   private Integer generation;
 
-  public GameController() {}
-
-  public GameController(Board board) {
+  public GameController (Board board) {
+    this.board = board;
     observers = new ArrayList<Observer>();
   }
 
-  public void setBoard(Board board) {
+  public void setBoard (Board board) {
     this.board = board;
   }
 

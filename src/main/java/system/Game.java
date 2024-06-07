@@ -26,8 +26,8 @@ public class Game {
         config.loadConfig();
 
         AbstracFactory factory = createFactory(config.gamemode);
-        Board board = factory.createBoardFactory(config.rows, config.cols, config.initialConfig);
-        List<Rule> rules = factory.createRuleFactory();
+        Board board = factory.createBoard(config.rows, config.cols, config.initialConfig);
+        List<Rule> rules = factory.createRule();
         board.setRules(rules);
 
         GameController gameController = new GameController(board);

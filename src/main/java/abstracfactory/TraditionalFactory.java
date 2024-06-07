@@ -14,26 +14,21 @@ public class TraditionalFactory implements AbstracFactory{
     public TraditionalFactory(){}
 
     @Override
-    public Board createBoardFactory(Integer rows, Integer cols, String configInitial) {
+    public Board createBoard(Integer rows, Integer cols, String configInitial) {
         CellFactory cellFactory = new CellFactoryTraditionalGame();
         Board board = new RectangularBoard(rows, cols, configInitial, cellFactory);
         return board;
     }
 
     @Override
-    public List<Rule> createRuleFactory() {
+    public List<Rule> createRule() {
         List<Rule> rules = new ArrayList<>();
-        Rule rule1 = new BirthRule(List.of(2));
+        Rule rule1 = new BirthRule(List.of(3));
         Rule rule2 = new SurviveRule(List.of(2,3));
         Rule rule3 = new DeathRule();
         rules.add(rule1);
         rules.add(rule2);
         rules.add(rule3);
-
         return rules;
     }
 }
-
-/*
-pensar pon donde tengo que pasar los parametros de tod lo que ncesito
- */
