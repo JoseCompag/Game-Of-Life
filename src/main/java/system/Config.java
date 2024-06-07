@@ -5,8 +5,6 @@ import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 public class Config {
@@ -29,11 +27,12 @@ public class Config {
 
     private void parseConfig (){
         Properties prop = getPropertieFile();
-        String stringTypeBoard = prop.getProperty("board.typeBoard");
-        String stringRows = prop.getProperty("board.rows");
-        String stringCols = prop.getProperty("board.cols");
-        String stringNameInitialConfig = prop.getProperty("board.nameInitialConfig");
+        String gamemode = prop.getProperty("gamemode");
+        String stringRows = prop.getProperty("rows");
+        String stringCols = prop.getProperty("cols");
+        String stringNameInitialConfig = prop.getProperty("nameInitialConfig");
 
+        this.gamemode = gamemode;
         this.rows = Integer.parseInt(stringRows);
         this.cols = Integer.parseInt(stringCols);
         this.initialConfig = getInitialConfig(stringNameInitialConfig);
