@@ -7,7 +7,7 @@ import java.util.List;
 public class BirthRuleColorised extends Rule{
 
     private List<Integer> numOfLiveCellsForBirth;
-    private List<Cell> cells;
+    private List<Cell> neighborsCells;
 
     public BirthRuleColorised(List<Integer> params) {
         this.numOfLiveCellsForBirth = params;
@@ -19,7 +19,7 @@ public class BirthRuleColorised extends Rule{
                 cell.getClass() == BlueCell.class || cell.getClass() == YellowCell.class) {
             return false;
         }
-        this.cells = cells;
+        this.neighborsCells = cells;
         int count = 0;
         for (Cell c : cells) {
             if (c.getClass() != DeadCell.class) {
@@ -41,7 +41,7 @@ public class BirthRuleColorised extends Rule{
         int blueCount = 0;
         int yellowCount = 0;
 
-        for (Cell c : cells) {
+        for (Cell c : neighborsCells) {
             if (c.getClass() == RedCell.class) {
                 redCount++;
                 if (redCount >= 2) {
