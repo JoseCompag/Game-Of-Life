@@ -1,7 +1,7 @@
 package output;
 
 import board.Board;
-import game.GameController;
+import gamecontroller.GameController;
 
 public class TerminalOutput implements Observer {
 

@@ -1,4 +1,4 @@
-package system;
+package game;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;

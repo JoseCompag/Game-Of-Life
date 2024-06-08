@@ -1,11 +1,11 @@
-package system;
+package game;
 
 import abstracfactory.AbstracFactory;
 import abstracfactory.ColorisedFactory;
 import abstracfactory.HightLifeFactory;
 import abstracfactory.TraditionalFactory;
 import board.Board;
-import game.GameController;
+import gamecontroller.GameController;
 import output.TerminalOutput;
 import rule.*;
 

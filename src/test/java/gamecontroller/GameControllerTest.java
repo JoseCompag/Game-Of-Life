@@ -1,4 +1,4 @@
-package game;
+package gamecontroller;
 
 import board.Board;
 import board.RectangularBoard;

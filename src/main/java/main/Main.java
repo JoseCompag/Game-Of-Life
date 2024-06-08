@@ -1,6 +1,6 @@
 package main;
 
-import system.Game;
+import game.Game;
 
 public class Main {
 

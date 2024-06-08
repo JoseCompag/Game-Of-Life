@@ -2,7 +2,7 @@ package output;
 
 import board.Board;
 import board.RectangularBoard;
-import game.GameController;
+import gamecontroller.GameController;
 import org.junit.jupiter.api.*;
 import rule.Rule;
 
