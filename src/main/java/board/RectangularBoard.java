@@ -35,6 +35,7 @@ public class RectangularBoard extends Board {
   @Override
   public Board nextBoard () {
     RectangularBoard newBoard = new RectangularBoard(rows, cols);
+    newBoard.setRules(this.rules);
     for (int x = 0; x < rows; x++) {
       for (int y = 0; y < cols; y++) {
         for (Rule rule : rules) {

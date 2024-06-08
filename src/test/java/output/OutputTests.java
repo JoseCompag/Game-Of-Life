@@ -15,6 +15,7 @@ public class OutputTests {
   @Test
   public void output() {
     Board board = new RectangularBoard(8, 8);
+    board.setRules(new ArrayList<Rule>());
     GameController game = new GameController(board);
     MockOutput mockOutput = new MockOutput(game);
     game.start(5);

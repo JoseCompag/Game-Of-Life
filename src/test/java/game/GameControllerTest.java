@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GameTest {
+public class GameControllerTest {
 
   List<Rule> rules = new ArrayList<>();
 
@@ -50,7 +50,8 @@ public class GameTest {
           "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
-    Board board = new RectangularBoard(15, 20, configInitial, rules, new CellFactoryTraditionalGame());
+    Board board = new RectangularBoard(15, 20, configInitial, new CellFactoryTraditionalGame());
+    board.setRules(rules);
     GameController game = new GameController(board);
     TerminalOutput output = new TerminalOutput(game);
     game.start(10);
@@ -93,7 +94,8 @@ public class GameTest {
         "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
         "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ \n" +
         "□ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ □ "+"\n";
-    Board board = new RectangularBoard(15, 20, configInitial, rules, new CellFactoryTraditionalGame());
+    Board board = new RectangularBoard(15, 20, configInitial, new CellFactoryTraditionalGame());
+    board.setRules(rules);
     GameController game = new GameController(board);
     TerminalOutput output = new TerminalOutput(game);
     game.start(10);
