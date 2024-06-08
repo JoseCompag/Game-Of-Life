@@ -4,11 +4,13 @@ import board.Board;
 import output.Observer;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class GameController extends Subject {
 
   private Board board;
   private Integer generation;
+  private Integer generationMax = 60;
 
   public GameController (Board board) {
     this.board = board;
@@ -24,6 +26,7 @@ public class GameController extends Subject {
   }
 
   public void start (Integer generationMax) {
+    this.generationMax = generationMax;
     generation = 0;
     do {
       this.board = board.nextBoard ();
@@ -31,6 +34,58 @@ public class GameController extends Subject {
       notifyObservers();
     } while (generation < generationMax);
   }
+
+  public void start () {
+    generation = 0;
+    do {
+      this.board = board.nextBoard ();
+      generation++;
+      notifyObservers();
+    } while (generation < generationMax);
+  }
+
+  public void startOneStep () {
+    generation = 0;
+    Scanner scanner = new Scanner(System.in);
+    boolean bool = true;
+    do {
+      this.board = board.nextBoard ();
+      generation++;
+      notifyObservers();
+      String input = scanner.nextLine();
+      if (!input.isEmpty()) {
+        bool = false;
+      }
+    } while (bool);
+  }
+
+  public void startTime () {
+    int time = 600;
+    Scanner scanner = new Scanner(System.in);
+    generation = 0;
+    do {
+      this.board = board.nextBoard ();
+      generation++;
+      notifyObservers();
+      if (generation % 15 == 0){
+        System.out.println("time: " +time);
+        String input = scanner.nextLine();
+        if (input.equals("+")) {
+          time = (int) (time / 1.3);
+        }else if (input.equals("-")) {
+          time = (int) (time * 1.3);
+        }
+      }
+      try {
+        Thread.sleep(time);
+      } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+      }
+
+    } while (generation < generationMax);
+  }
+
+
 
   @Override
   public void notifyObservers() {
