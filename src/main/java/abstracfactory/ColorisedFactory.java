@@ -1,7 +1,5 @@
 package abstracfactory;
 
-import board.Board;
-import board.RectangularBoard;
 import cell.CellFactory;
 import cell.CellFactoryColourisedGame;
 import rule.BirthRuleColorised;
@@ -17,14 +15,12 @@ public class ColorisedFactory implements AbstracFactory {
     public ColorisedFactory(){}
 
     @Override
-    public Board createBoard(Integer rows, Integer cols, String configInitial) {
-        CellFactory cellFactory = new CellFactoryColourisedGame();
-        Board board = new RectangularBoard(rows, cols, configInitial, cellFactory);
-        return board;
+    public CellFactory getCellFactory(){
+        return new CellFactoryColourisedGame();
     }
 
     @Override
-    public List<Rule> createRule() {
+    public List<Rule> createRules() {
         List<Rule> rules = new ArrayList<>();
         Rule rule1 = new BirthRuleColorised(List.of(3));
         Rule rule2 = new SurviveRuleColorised(List.of(2,3));

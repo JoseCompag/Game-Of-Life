@@ -1,10 +1,9 @@
 package game;
 
-import abstracfactory.AbstracFactory;
-import abstracfactory.ColorisedFactory;
-import abstracfactory.HightLifeFactory;
-import abstracfactory.TraditionalFactory;
+import abstracfactory.*;
 import board.Board;
+import board.RectangularBoard;
+import cell.CellFactory;
 import gamecontroller.GameController;
 import output.TerminalOutput;
 import rule.*;
@@ -26,8 +25,9 @@ public class Game {
         config.loadConfig();
 
         AbstracFactory factory = createFactory(config.gamemode);
-        Board board = factory.createBoard(config.rows, config.cols, config.initialConfig);
-        List<Rule> rules = factory.createRule();
+        CellFactory cellFactory = factory.getCellFactory();
+        Board board = new RectangularBoard(config.rows, config.cols, config.initialConfig, cellFactory);
+        List<Rule> rules = factory.createRules();
         board.setRules(rules);
 
         GameController gameController = new GameController(board);
@@ -43,6 +43,10 @@ public class Game {
           return new HightLifeFactory();
         case "colorised":
           return new ColorisedFactory();
+        case "generationsBB":
+          return  new GenerationsBBFactory();
+        case "generationsSW":
+          return  new GenerationsSWFactory();
       }
       return null;
     }
