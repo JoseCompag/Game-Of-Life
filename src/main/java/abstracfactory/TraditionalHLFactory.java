@@ -10,9 +10,9 @@ import rule.SurviveRule;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HightLifeFactory implements AbstracFactory {
+public class TraditionalHLFactory implements AbstracFactory {
 
-    public HightLifeFactory(){}
+    public TraditionalHLFactory(){}
 
     @Override
     public CellFactory getCellFactory(){

@@ -39,8 +39,8 @@ public class Game {
       switch (gamemode) {
         case "traditional":
           return new TraditionalFactory();
-        case "hightlife":
-          return new HightLifeFactory();
+        case "traditionalHL":
+          return new TraditionalHLFactory();
         case "colorised":
           return new ColorisedFactory();
         case "generationsBB":
