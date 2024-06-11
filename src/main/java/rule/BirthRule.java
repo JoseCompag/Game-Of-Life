@@ -1,9 +1,9 @@
 package rule;
 
 import cell.Cell;
+import cell.DeadCell;
 import cell.LivingCell;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BirthRule extends Rule {
@@ -16,7 +16,7 @@ public class BirthRule extends Rule {
 
   @Override
   public boolean validate (Cell cell, List<Cell> cells) {
-    if (cell.getClass() == LivingCell.class) {
+    if (cell.getClass() != DeadCell.class) {
       return false;
     }
     int count = 0;

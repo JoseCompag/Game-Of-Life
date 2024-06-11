@@ -4,7 +4,7 @@ import cell.*;
 
 import java.util.List;
 
-public class BirthRuleColorised extends Rule{
+public class BirthRuleColorised extends Rule {
 
     private List<Integer> numOfLiveCellsForBirth;
     private List<Cell> neighborsCells;
@@ -15,8 +15,7 @@ public class BirthRuleColorised extends Rule{
 
     @Override
     public boolean validate (Cell cell, List<Cell> cells) {
-        if (cell.getClass() == RedCell.class || cell.getClass() == GreenCell.class ||
-                cell.getClass() == BlueCell.class || cell.getClass() == YellowCell.class) {
+        if (cell.getClass() != DeadCell.class) {
             return false;
         }
         this.neighborsCells = cells;
