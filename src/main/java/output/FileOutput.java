@@ -2,7 +2,7 @@ package output;
 
 
 import board.Board;
-import gamecontroller.GameController;
+import gamecontroller.*;
 
 import java.io.File;
 import java.io.FileWriter;

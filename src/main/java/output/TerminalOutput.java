@@ -14,6 +14,8 @@ public class TerminalOutput implements Observer {
 
   @Override
   public void update (Board board, Integer generation) {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
     String print = board.toString();
     System.out.println("---"+generation+"---");
     System.out.println(print);

@@ -3,8 +3,7 @@ package output;
 import board.Board;
 import board.RectangularBoard;
 import cell.CellFactoryTraditionalGame;
-import game.Game;
-import gamecontroller.GameController;
+import gamecontroller.*;
 import org.junit.jupiter.api.*;
 import rule.BirthRule;
 import rule.DeathRule;
@@ -22,9 +21,9 @@ public class OutputTests {
   public void output() {
     Board board = new RectangularBoard(8, 8);
     board.setRules(new ArrayList<Rule>());
-    GameController game = new GameController(board);
+    GameController game = new StartDelimited(board, 5);
     MockOutput mockOutput = new MockOutput(game);
-    game.start(5);
+    game.start();
     assertThat(mockOutput.isInvoked()).isTrue();
     assertThat(mockOutput.getGeneration()).isEqualTo(5);
   }
@@ -53,9 +52,9 @@ public class OutputTests {
     rules.add(new BirthRule(List.of(3)));
     rules.add(new DeathRule());
     board.setRules(rules);
-    GameController game = new GameController(board);
+    GameController game = new StartDelimited(board, 5);
     FileOutput fileOutput = new FileOutput(game);
-    game.start(5);
+    game.start();
   }
 
 }

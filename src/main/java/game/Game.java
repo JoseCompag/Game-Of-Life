@@ -4,7 +4,7 @@ import abstracfactory.*;
 import board.Board;
 import board.RectangularBoard;
 import cell.CellFactory;
-import gamecontroller.GameController;
+import gamecontroller.*;
 import output.TerminalOutput;
 import rule.*;
 
@@ -30,9 +30,9 @@ public class Game {
         List<Rule> rules = factory.createRules();
         board.setRules(rules);
 
-        GameController gameController = new GameController(board);
+        GameController gameController = new StartDefault(board);
         TerminalOutput output = new TerminalOutput(gameController);
-        gameController.start(generations);
+        gameController.start();
     }
 
     private AbstracFactory createFactory(String gamemode) {
