@@ -1,28 +1,28 @@
 package abstracfactory;
 
 import cell.CellFactory;
-import cell.TraditionalHLGame.CellFactoryTraditionalHLGame;
+import cell.ColourisedImGame.CellFactoryColourisedImGame;
+import rule.ColourisedImGame.BirthRule;
+import rule.ColourisedImGame.DeathRule;
+import rule.ColourisedImGame.SurviveRule;
 import rule.Rule;
-import rule.TraditionalHLGame.BirthRule;
-import rule.TraditionalHLGame.DeathRule;
-import rule.TraditionalHLGame.SurviveRule;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TraditionalHLFactory implements AbstracFactory {
+public class ColorisedImFactory implements AbstracFactory {
 
-    public TraditionalHLFactory(){}
+    public ColorisedImFactory(){}
 
     @Override
     public CellFactory getCellFactory(){
-        return new CellFactoryTraditionalHLGame();
+        return new CellFactoryColourisedImGame();
     }
 
     @Override
     public List<Rule> createRules() {
         List<Rule> rules = new ArrayList<>();
-        Rule rule1 = new BirthRule(List.of(3,6));
+        Rule rule1 = new BirthRule(List.of(3));
         Rule rule2 = new SurviveRule(List.of(2,3));
         Rule rule3 = new DeathRule();
         rules.add(rule1);

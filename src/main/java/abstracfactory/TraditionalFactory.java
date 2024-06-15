@@ -1,8 +1,11 @@
 package abstracfactory;
 
 import cell.CellFactory;
-import cell.CellFactoryTraditionalGame;
-import rule.*;
+import cell.TraditionalGame.CellFactoryTraditionalGame;
+import rule.Rule;
+import rule.TraditionalGame.BirthRule;
+import rule.TraditionalGame.DeathRule;
+import rule.TraditionalGame.SurviveRule;
 
 import java.util.ArrayList;
 import java.util.List;

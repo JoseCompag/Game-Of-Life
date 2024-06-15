@@ -1,8 +1,9 @@
 package abstracfactory;
 
 import cell.CellFactory;
-import cell.CellFactoryGenerationsSWGame;
-import rule.*;
+import cell.GenerationsSWGame.CellFactoryGenerationsSWGame;
+import rule.GenerationsSWGame.*;
+import rule.Rule;
 
 import java.util.ArrayList;
 import java.util.List;

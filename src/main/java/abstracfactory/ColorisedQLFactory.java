@@ -1,28 +1,28 @@
 package abstracfactory;
 
 import cell.CellFactory;
-import cell.TraditionalHLGame.CellFactoryTraditionalHLGame;
+import cell.ColourisedQLGame.CellFactoryColourisedQLGame;
+import rule.ColourisedQLGame.BirthRule;
+import rule.ColourisedQLGame.DeathRule;
+import rule.ColourisedQLGame.SurviveRule;
 import rule.Rule;
-import rule.TraditionalHLGame.BirthRule;
-import rule.TraditionalHLGame.DeathRule;
-import rule.TraditionalHLGame.SurviveRule;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TraditionalHLFactory implements AbstracFactory {
+public class ColorisedQLFactory implements AbstracFactory {
 
-    public TraditionalHLFactory(){}
+    public ColorisedQLFactory(){}
 
     @Override
     public CellFactory getCellFactory(){
-        return new CellFactoryTraditionalHLGame();
+        return new CellFactoryColourisedQLGame();
     }
 
     @Override
     public List<Rule> createRules() {
         List<Rule> rules = new ArrayList<>();
-        Rule rule1 = new BirthRule(List.of(3,6));
+        Rule rule1 = new BirthRule(List.of(3));
         Rule rule2 = new SurviveRule(List.of(2,3));
         Rule rule3 = new DeathRule();
         rules.add(rule1);
