@@ -4,10 +4,11 @@ import cell.*;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-
+import rule.ColourisedImGame.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+import cell.ColourisedQLGame.*;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
@@ -34,7 +35,7 @@ public class ColorizedRulesTests {
   void testBirthRuleColorized (List<Cell> cells, Cell cell) {
     ArrayList<Integer> params = new ArrayList<>();
     params.add(3);
-    Rule rule1 = new BirthRuleColorised(params);
+    Rule rule1 = new BirthRule(params);
     Boolean res = rule1.validate(new DeadCell(), cells);
     Cell cellRes = rule1.apply();
     assertThat(res).isEqualTo(true);
@@ -61,7 +62,7 @@ public class ColorizedRulesTests {
     ArrayList<Integer> params = new ArrayList<>();
     params.add(0,2);
     params.add(1,3);
-    Rule rule1 = new SurviveRuleColorised(params);
+    Rule rule1 = new SurviveRule(params);
     Boolean res = rule1.validate(new BlueCell(), cells);
     Cell cellRes = rule1.apply();
     assertThat(res).isEqualTo(true);

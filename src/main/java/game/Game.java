@@ -41,8 +41,10 @@ public class Game {
           return new TraditionalFactory();
         case "traditionalHL":
           return new TraditionalHLFactory();
-        case "colorised":
-          return new ColorisedFactory();
+        case "colorisedQL":
+          return new ColorisedQLFactory();
+        case "colorisedIm":
+          return new ColorisedImFactory();
         case "generationsBB":
           return  new GenerationsBBFactory();
         case "generationsSW":

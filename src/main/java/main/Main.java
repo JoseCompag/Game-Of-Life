@@ -1,5 +1,5 @@
 package main;
-
+/*
 import board.Board;
 import board.RectangularBoard;
 import cell.CellFactoryTraditionalGame;
@@ -51,3 +51,6 @@ public class Main {
     }
 
 }
+
+
+ */

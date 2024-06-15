@@ -1,7 +1,8 @@
 package board;
 
-import cell.CellFactoryColourisedGame;
+import cell.ColourisedQLGame.CellFactoryColourisedQLGame;
 import org.junit.jupiter.api.BeforeEach;
+import rule.ColourisedQLGame.*;
 import rule.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.Arguments;
@@ -34,11 +35,11 @@ public class BoardColorisedTests {
   public void setUp() {
     ArrayList<Integer> paramsForBirthRule = new ArrayList<>();
     paramsForBirthRule.add(3);
-    Rule rule1 = new BirthRuleColorised(paramsForBirthRule);
+    Rule rule1 = new BirthRule(paramsForBirthRule);
     ArrayList<Integer> paramsForSurviveRule = new ArrayList<>();
     paramsForSurviveRule.add(3);
     paramsForSurviveRule.add(2);
-    Rule rule2 = new SurviveRuleColorised(paramsForSurviveRule);
+    Rule rule2 = new SurviveRule(paramsForSurviveRule);
     Rule rule3 = new DeathRule();
     rules.add(rule1);
     rules.add(rule2);
@@ -62,7 +63,7 @@ public class BoardColorisedTests {
         "□ B B G G □ \n" +
         "□ □ □ □ □ □ "+"\n";
     System.out.println(expected);
-    Board board = new RectangularBoard(6, 6, configInitial, new CellFactoryColourisedGame());
+    Board board = new RectangularBoard(6, 6, configInitial, new CellFactoryColourisedQLGame());
     board.setRules(new ArrayList<Rule>());
     String res = board.toString();
     System.out.println(res);
@@ -72,7 +73,7 @@ public class BoardColorisedTests {
   @ParameterizedTest
   @MethodSource("listBoardColorized1")
   void testListBoards2(List<String> boards, String configInitial) {
-    Board board = new RectangularBoard(15, 20, configInitial, new CellFactoryColourisedGame());
+    Board board = new RectangularBoard(15, 20, configInitial, new CellFactoryColourisedQLGame());
     board.setRules(rules);
     for (String listBoard : boards) {
       //System.out.println(board.toString());

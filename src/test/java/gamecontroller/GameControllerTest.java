@@ -2,11 +2,12 @@ package gamecontroller;
 
 import board.Board;
 import board.RectangularBoard;
-import cell.CellFactoryTraditionalGame;
+import cell.TraditionalGame.CellFactoryTraditionalGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import output.TerminalOutput;
 import rule.*;
+import rule.TraditionalGame.*;
 
 import java.util.ArrayList;
 import java.util.List;

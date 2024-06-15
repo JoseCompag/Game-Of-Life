@@ -1,6 +1,7 @@
 package board;
 
 import cell.*;
+import cell.TraditionalGame.DeadCell;
 import rule.Rule;
 
 import java.util.ArrayList;

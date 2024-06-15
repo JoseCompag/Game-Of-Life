@@ -2,13 +2,12 @@ package output;
 
 import board.Board;
 import board.RectangularBoard;
-import cell.CellFactoryTraditionalGame;
+import cell.TraditionalGame.CellFactoryTraditionalGame;
 import gamecontroller.*;
 import org.junit.jupiter.api.*;
-import rule.BirthRule;
-import rule.DeathRule;
+import rule.TraditionalGame.*;
+
 import rule.Rule;
-import rule.SurviveRule;
 
 import java.util.ArrayList;
 import java.util.List;

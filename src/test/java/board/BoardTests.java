@@ -1,9 +1,10 @@
 package board;
 
 import cell.CellFactory;
-import cell.CellFactoryTraditionalGame;
+import cell.TraditionalGame.CellFactoryTraditionalGame;
 import org.junit.jupiter.api.BeforeEach;
 import rule.*;
+import rule.TraditionalGame.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.ParameterizedTest;
