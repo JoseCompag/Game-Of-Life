@@ -19,28 +19,16 @@ public class BirthRule extends Rule {
         this.numOfLiveCellsForBirth = params;
     }
 
-    @Override
-    public boolean validate (Cell cell, List<Cell> cells) {
-        if (cell.getClass() != DeadCell.class) {
-            return false;
-        }
-        this.neighborsCells = cells;
-        int count = 0;
-        for (Cell c : cells) {
-            if (c.getClass() != DeadCell.class) {
-                count++;
-            }
-        }
-        for (Integer integer : numOfLiveCellsForBirth) {
-            if (count == integer) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     @Override
-    public Cell apply() {
+    public Cell apply(Cell cell) {
+
+        List<Cell> neighbors = this.cells.get(cell);
+
+        if (cell.getClass() != DeadCell.class || neighbors.isEmpty()) {
+            return cell;
+        }
+
         int redCount = 0;
         int greenCount = 0;
         int blueCount = 0;
@@ -83,7 +71,7 @@ public class BirthRule extends Rule {
             return new YellowCell();
         }
 
-        return new DeadCell();
+        return cell;
     }
 
 }

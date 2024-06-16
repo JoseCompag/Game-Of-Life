@@ -22,8 +22,8 @@ public class TraditionalFactory implements AbstracFactory{
     @Override
     public List<Rule> createRules() {
         List<Rule> rules = new ArrayList<>();
-        Rule rule1 = new BirthRule(List.of(3));
-        Rule rule2 = new SurviveRule(List.of(2,3));
+        Rule rule1 = new BirthRule();
+        Rule rule2 = new SurviveRule();
         Rule rule3 = new DeathRule();
         rules.add(rule1);
         rules.add(rule2);

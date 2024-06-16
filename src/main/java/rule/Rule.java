@@ -2,11 +2,15 @@ package rule;
 
 import cell.Cell;
 
+import java.util.HashMap;
 import java.util.List;
 
 public abstract class Rule {
 
-  public abstract boolean validate (Cell cell, List<Cell> cells);
-  public abstract Cell apply();
+  protected HashMap<Cell, List<Cell>> cells;
 
+  public abstract Cell apply(Cell cell);
+  public void setCells(HashMap<Cell, List<Cell>> cells) {
+    this.cells = cells;
+  }
 }

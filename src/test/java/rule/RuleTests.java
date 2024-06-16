@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import rule.TraditionalGame.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -19,53 +20,42 @@ public class RuleTests {
   static Stream<Arguments> listSurviveRule() {
     return Stream.of(
             //
-            arguments(List.of(new LivingCell(), new LivingCell(), new DeadCell(),
-                    new DeadCell(), new DeadCell(), new DeadCell(), new DeadCell(), new DeadCell()), new LivingCell()),
+            arguments(List.of(new LivingCell(), new LivingCell()), new LivingCell()),
             //
-            arguments(List.of(new LivingCell(), new LivingCell(), new DeadCell(),
-                    new DeadCell(), new DeadCell(), new DeadCell(), new LivingCell(), new DeadCell()), new LivingCell()),
+            arguments(List.of(new LivingCell(), new LivingCell(), new LivingCell()), new LivingCell())
             //
-            arguments(List.of(new LivingCell(), new LivingCell(), new LivingCell(),
-                    new DeadCell(), new DeadCell(), new DeadCell(), new DeadCell(), new DeadCell()), new LivingCell())
             );
   }
 
   @ParameterizedTest
   @MethodSource("listSurviveRule")
   void testSurviveRule (List<Cell> cells, Cell cell) {
-    ArrayList<Integer> params = new ArrayList<>();
-    params.add(0,2);
-    params.add(1,3);
-    Rule rule1 = new SurviveRule(params);
-    Boolean res = rule1.validate(new LivingCell(), cells);
-    Cell cellRes = rule1.apply();
-    assertThat(res).isEqualTo(true);
+
+    Rule rule1 = new SurviveRule();
+    Cell initialCell = new LivingCell();
+    HashMap<Cell, List<Cell>> surviveRule = new HashMap<>();
+    surviveRule.put(initialCell, cells);
+    rule1.setCells(surviveRule);
+    Cell cellRes = rule1.apply(initialCell);
     assertThat(cellRes.getClass()).isEqualTo(cell.getClass());
   }
 
   static Stream<Arguments> listBirthRule() {
     return Stream.of(
       //
-      arguments(List.of(new LivingCell(), new DeadCell(), new LivingCell(),
-        new DeadCell(), new LivingCell(), new DeadCell(), new DeadCell(), new LivingCell()), new LivingCell()),
-      //
-      arguments(List.of(new LivingCell(), new LivingCell(), new DeadCell(),
-        new LivingCell(), new DeadCell(), new DeadCell(), new LivingCell(), new DeadCell()), new LivingCell()),
-      //
-      arguments(List.of(new LivingCell(), new LivingCell(), new LivingCell(),
-        new DeadCell(), new LivingCell(), new DeadCell(), new DeadCell(), new DeadCell()), new LivingCell())
+      arguments(List.of(new LivingCell(), new LivingCell(), new LivingCell()), new LivingCell())
     );
   }
 
   @ParameterizedTest
   @MethodSource("listBirthRule")
   void testBirthRule (List<Cell> cells, Cell cell) {
-    ArrayList<Integer> params = new ArrayList<>();
-    params.add(4);
-    Rule rule1 = new BirthRule(params);
-    Boolean res = rule1.validate(new DeadCell(), cells);
-    Cell cellRes = rule1.apply();
-    assertThat(res).isEqualTo(true);
+    Rule rule1 = new BirthRule();
+    Cell initialCell = new DeadCell();
+    HashMap<Cell, List<Cell>> surviveRule = new HashMap<>();
+    surviveRule.put(initialCell, cells);
+    rule1.setCells(surviveRule);
+    Cell cellRes = rule1.apply(initialCell);
     assertThat(cellRes.getClass()).isEqualTo(cell.getClass());
   }
 

@@ -2,9 +2,9 @@ package abstracfactory;
 
 import cell.CellFactory;
 import cell.ColourisedImGame.CellFactoryColourisedImGame;
-import rule.ColourisedImGame.BirthRule;
-import rule.ColourisedImGame.DeathRule;
-import rule.ColourisedImGame.SurviveRule;
+import rule.ColourisedIMGame.BirthRule;
+import rule.ColourisedIMGame.DeathRule;
+import rule.ColourisedIMGame.SurviveRule;
 import rule.Rule;
 
 import java.util.ArrayList;
@@ -22,8 +22,8 @@ public class ColorisedImFactory implements AbstracFactory {
     @Override
     public List<Rule> createRules() {
         List<Rule> rules = new ArrayList<>();
-        Rule rule1 = new BirthRule(List.of(3));
-        Rule rule2 = new SurviveRule(List.of(2,3));
+        Rule rule1 = new BirthRule();
+        Rule rule2 = new SurviveRule();
         Rule rule3 = new DeathRule();
         rules.add(rule1);
         rules.add(rule2);
