@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 
-public class BoardColorisedTests {
+public class BoardColorisedImTests {
 
     static String blue="\033[34m";
     static String red="\033[31m";
