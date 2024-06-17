@@ -3,7 +3,7 @@ package output;
 import board.Board;
 import gamecontroller.GameController;
 
-public class TerminalOutput implements Observer {
+public class TerminalOutput implements Output {
 
   private GameController gameController;
 

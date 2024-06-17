@@ -52,7 +52,7 @@ public class OutputTests {
         rules.add(new DeathRule());
         board.setRules(rules);
         GameController game = new Delimited(board, 5);
-        FileOutput fileOutput = new FileOutput(game);
+        Output fileOutput = new FileOutput(game);
         game.start();
     }
 

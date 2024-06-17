@@ -24,6 +24,11 @@ public class Delimited extends GameController {
       this.board = board.nextBoard ();
       generation++;
       notifyObservers();
+      try {
+        Thread.sleep(time);
+      } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+      }
     } while (generation < generationMax);
   }
 

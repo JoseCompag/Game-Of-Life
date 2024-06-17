@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class FileOutput implements Observer {
+public class FileOutput implements Output {
 
   private GameController gameController;
   private String path = "../tp2-GameOfLife/files";

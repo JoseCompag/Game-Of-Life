@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Speed extends GameController {
 
   private Integer generationMax = 5000;
-  private Integer time;
+
 
   public Speed(Board board, Integer time) {
     this.board = board;

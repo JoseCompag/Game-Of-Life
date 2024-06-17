@@ -14,6 +14,7 @@ public class Config {
     public int cols;
     public String initialConfig;
     public String advanceMode;
+    public String output;
 
     private String path = "src/main/resources/";
     private String nameConfigProperties;
@@ -33,12 +34,14 @@ public class Config {
         String stringCols = prop.getProperty("cols");
         String stringNameInitialConfig = prop.getProperty("nameInitialConfig");
         String stringAdvanceMode = prop.getProperty("advanceMode");
+        String stringOutput = prop.getProperty("output");
 
         this.gamemode = gamemode;
         this.rows = Integer.parseInt(stringRows);
         this.cols = Integer.parseInt(stringCols);
         this.initialConfig = getInitialConfig(stringNameInitialConfig);
         this.advanceMode = stringAdvanceMode;
+        this.output = stringOutput;
     }
 
     private Properties getPropertieFile() {
@@ -56,8 +59,7 @@ public class Config {
         try {
             this.path += nameInitialConfigTxt;
             Path path = Paths.get(this.path);
-            String string = Files.readString(path);
-            return string;
+            return Files.readString(path);
         } catch (IOException e) {
             throw new RuntimeException("Error reading initial config file:" + e.getMessage());
         }
