@@ -20,12 +20,7 @@ public class Speed extends GameController {
   public void start() {
 
     generation = 0;
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
-    String print = board.toString();
-    System.out.println("---"+generation+"---");
-    System.out.println(print);
-    generation++;
+    notifyObservers();
 
     do {
       this.board = board.nextBoard ();

@@ -19,10 +19,11 @@ public class Delimited extends GameController {
   public void start() {
 
     generation = 0;
+    notifyObservers();
     do {
       this.board = board.nextBoard ();
-      notifyObservers();
       generation++;
+      notifyObservers();
     } while (generation < generationMax);
   }
 

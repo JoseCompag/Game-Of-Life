@@ -17,24 +17,19 @@ public class Manual extends GameController {
   public void start() {
 
     generation = 0;
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
-    String print = board.toString();
-    System.out.println("---"+generation+"---");
-    System.out.println(print);
-    generation++;
+    notifyObservers();
 
     Scanner scanner = new Scanner(System.in);
-    boolean bool = true;
+
     do {
-      this.board = board.nextBoard ();
-      generation++;
-      notifyObservers();
       String input = scanner.nextLine();
       if (!input.isEmpty()) {
-        bool = false;
+        break;
       }
-    } while (bool);
+      this.board = board.nextBoard();
+      generation++;
+      notifyObservers();
+    } while (true);
   }
 
 }
