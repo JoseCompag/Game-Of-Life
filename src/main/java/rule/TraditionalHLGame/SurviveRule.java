@@ -1,7 +1,6 @@
 package rule.TraditionalHLGame;
 
 import cell.Cell;
-import cell.TraditionalHLGame.DeadCell;
 import cell.TraditionalHLGame.LivingCell;
 import rule.Rule;
 
@@ -9,21 +8,34 @@ import java.util.List;
 
 public class SurviveRule extends Rule {
 
-  public SurviveRule () {  }
+  private List<Integer> numOfLiveCellsForSurvive;
+
+  public SurviveRule (List<Integer> params) {
+    this.numOfLiveCellsForSurvive = params;
+  }
 
   @Override
-  public Cell apply(Cell cell) {
-
-    List<Cell> neighbors = this.cells.get(cell);
-
-    if (cell.getClass() == LivingCell.class) {
-      if (neighbors.size() == 2 || neighbors.size() == 3) {
-        return cell;
+  public boolean validate (Cell cell, List<Cell> cells) {
+    if (cell.getClass() != LivingCell.class){
+      return  false;
+    }
+    int count = 0;
+    for (Cell c : cells) {
+      if (c.getClass() == LivingCell.class) {
+        count++;
       }
     }
+    for (Integer integer : numOfLiveCellsForSurvive) {
+      if (count == integer) {
+        return true;
+      }
+    }
+    return false;
+  }
 
-    return new DeadCell();
-
+  @Override
+  public Cell apply() {
+    return new LivingCell();
   }
 
 }

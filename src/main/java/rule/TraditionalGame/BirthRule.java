@@ -1,31 +1,42 @@
 package rule.TraditionalGame;
 
 import cell.Cell;
-import cell.DeadInitCell;
 import cell.TraditionalGame.DeadCell;
 import cell.TraditionalGame.LivingCell;
 import rule.Rule;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BirthRule extends Rule {
 
-  public BirthRule () {
+  private List<Integer> numOfLiveCellsForBirth;
+
+  public BirthRule (List<Integer> params) {
+    this.numOfLiveCellsForBirth = params;
   }
 
   @Override
-  public Cell apply(Cell cell) {
-
-    List<Cell> neighbors = this.cells.get(cell);
-
-    if(cell.getClass() == DeadCell.class){
-      if (neighbors.size() == 3) {
-        return new LivingCell();
+  public boolean validate (Cell cell, List<Cell> cells) {
+    if (cell.getClass() != DeadCell.class) {
+      return false;
+    }
+    int count = 0;
+    for (Cell c : cells) {
+      if (c.getClass() == LivingCell.class) {
+        count++;
       }
     }
-    return cell;
+    for (Integer integer : numOfLiveCellsForBirth) {
+      if (count == integer) {
+        return true;
+      }
+    }
+    return false;
+  }
 
+  @Override
+  public Cell apply() {
+    return new LivingCell();
   }
 
 }

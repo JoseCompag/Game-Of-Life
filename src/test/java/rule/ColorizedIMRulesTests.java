@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 import cell.ColourisedImGame.*;
-import rule.ColourisedIMGame.*;
+import rule.ColourisedImGame.*;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;

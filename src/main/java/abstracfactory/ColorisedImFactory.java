@@ -2,9 +2,9 @@ package abstracfactory;
 
 import cell.CellFactory;
 import cell.ColourisedImGame.CellFactoryColourisedImGame;
-import rule.ColourisedIMGame.BirthRule;
-import rule.ColourisedIMGame.DeathRule;
-import rule.ColourisedIMGame.SurviveRule;
+import rule.ColourisedImGame.BirthRule;
+import rule.ColourisedImGame.DeathRule;
+import rule.ColourisedImGame.SurviveRule;
 import rule.Rule;
 
 import java.util.ArrayList;

@@ -11,8 +11,13 @@ public class Dying1Rule extends Rule {
     public Dying1Rule() {}
 
     @Override
-    public Cell apply(Cell cell) {
-        return null;
+    public boolean validate (Cell cell, List<Cell> cells) {
+        return true;
+    }
+
+    @Override
+    public Cell apply() {
+        return new DyingCell1();
     }
 
 }

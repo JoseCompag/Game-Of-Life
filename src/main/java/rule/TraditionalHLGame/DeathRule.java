@@ -11,7 +11,12 @@ public class DeathRule extends Rule {
   public DeathRule() {}
 
   @Override
-  public Cell apply(Cell cell) {
+  public boolean validate (Cell cell, List<Cell> cells) {
+    return true;
+  }
+
+  @Override
+  public Cell apply() {
     return new DeadCell();
   }
 

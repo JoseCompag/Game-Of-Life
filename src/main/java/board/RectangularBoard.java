@@ -1,11 +1,9 @@
 package board;
 
 import cell.*;
-import cell.TraditionalGame.DeadCell;
 import rule.Rule;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class RectangularBoard extends Board {
@@ -21,7 +19,7 @@ public class RectangularBoard extends Board {
     board = new Cell[rows][cols];
     for (int x = 0; x < rows; x++) {
       for (int y = 0; y < cols; y++) {
-        board[x][y] = new DeadCell();
+        board[x][y] = new DeadInitCell();
       }
     }
   }
@@ -41,15 +39,12 @@ public class RectangularBoard extends Board {
     for (int x = 0; x < rows; x++) {
       for (int y = 0; y < cols; y++) {
         for (Rule rule : rules) {
-          rule.setCells(cells());
+          List<Cell> neighbors = calculateNeighbors(x, y);
           Cell cell = board[x][y];
-          newBoard.setCell(x,y,rule.apply(cell));
-          //List<Cell> neighbors = calculateNeighbors(x, y);
-          //Cell cell = board[x][y];
-          //if (rule.validate(cell, neighbors)) {
-          //  newBoard.setCell(x,y,rule.apply());
-          //  break;
-          //}
+          if (rule.validate(cell, neighbors)) {
+            newBoard.setCell(x,y,rule.apply());
+            break;
+          }
         }
       }
     }
@@ -92,6 +87,38 @@ public class RectangularBoard extends Board {
     board[x][y] = cell;
   }
 
+  private ArrayList<Cell> calculateNeighbors (int x, int y) {
+    ArrayList<Cell> neighbors = new ArrayList<>();
+    for (int i = x-1; i <= x+1; i++) {
+      for (int j = y-1; j <= y+1; j++) {
+        if (i >= 0 && i < board.length && j >= 0 && j < board[0].length && (i != x || j != y)) {
+          neighbors.add(board[i][j]);
+        }
+      }
+    }
+    return neighbors;
+  }
+
+}
+
+/*
+    @Override
+  public Board nextBoard () {
+    RectangularBoard newBoard = new RectangularBoard(rows, cols);
+    newBoard.setRules(this.rules);
+    for (int x = 0; x < rows; x++) {
+      for (int y = 0; y < cols; y++) {
+        for (Rule rule : rules) {
+          rule.setCells(cells());
+          Cell cell = board[x][y];
+          newBoard.setCell(x,y,rule.apply(cell));
+        }
+      }
+    }
+    return newBoard;
+  }
+
+
 
   private HashMap<Cell, List<Cell>> cells(){
     HashMap<Cell, List<Cell>> res = new HashMap<>();
@@ -106,18 +133,4 @@ public class RectangularBoard extends Board {
     return res;
   }
 
-  private ArrayList<Cell> calculateNeighbors (int x, int y) {
-    ArrayList<Cell> neighbors = new ArrayList<>();
-    for (int i = x-1; i <= x+1; i++) {
-      for (int j = y-1; j <= y+1; j++) {
-        if (i >= 0 && i < board.length && j >= 0 && j < board[0].length && (i != x || j != y)) {
-          if(board[i][j].getClass() != DeadCell.class){
-            neighbors.add(board[i][j]);
-          }
-        }
-      }
-    }
-    return neighbors;
-  }
-
-}
+ */

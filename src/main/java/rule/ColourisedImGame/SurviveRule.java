@@ -1,7 +1,7 @@
-package rule.ColourisedQLGame;
+package rule.ColourisedImGame;
 
-import cell.Cell;
-import cell.ColourisedQLGame.DeadCell;
+import cell.*;
+import cell.ColourisedImGame.DeadCell;
 import rule.Rule;
 
 import java.util.List;

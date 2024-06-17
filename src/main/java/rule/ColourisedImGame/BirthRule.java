@@ -1,11 +1,9 @@
-package rule.ColourisedQLGame;
+package rule.ColourisedImGame;
 
-import cell.Cell;
-import cell.ColourisedQLGame.BlueCell;
-import cell.ColourisedQLGame.GreenCell;
-import cell.ColourisedQLGame.RedCell;
-import cell.ColourisedQLGame.YellowCell;
-import cell.ColourisedQLGame.DeadCell;
+import cell.*;
+import cell.ColourisedImGame.BlueCell;
+import cell.ColourisedImGame.RedCell;
+import cell.TraditionalGame.DeadCell;
 import rule.Rule;
 
 import java.util.List;
@@ -53,34 +51,18 @@ public class BirthRule extends Rule {
                     return new RedCell();
                 }
             }
-            if (c.getClass() == GreenCell.class) {
-                greenCount++;
-                if (greenCount >= 2) {
-                    return new GreenCell();
-                }
-            }
             if (c.getClass() == BlueCell.class) {
                 blueCount++;
                 if (blueCount >= 2) {
                     return new BlueCell();
                 }
             }
-            if (c.getClass() == YellowCell.class) {
-                yellowCount++;
-                if (yellowCount >= 2) {
-                    return new YellowCell();
-                }
-            }
         }
 
         if (redCount == 0){
             return new RedCell();
-        }else if (greenCount == 0){
-            return new GreenCell();
         }else if (blueCount == 0){
             return new BlueCell();
-        }else if (yellowCount == 0){
-            return new YellowCell();
         }
 
         return new DeadCell();
