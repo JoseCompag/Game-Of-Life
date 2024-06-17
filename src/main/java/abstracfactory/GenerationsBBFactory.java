@@ -22,7 +22,7 @@ public class GenerationsBBFactory implements AbstracFactory {
     @Override
     public List<Rule> createRules() {
         List<Rule> rules = new ArrayList<>();
-        Rule rule1 = new BirthRule(List.of(2));
+        Rule rule1 = new BirthRule();
         Rule rule2 = new Dying1Rule();
         Rule rule3 = new DeathRule();
         rules.add(rule1);

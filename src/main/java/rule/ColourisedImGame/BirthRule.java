@@ -3,69 +3,54 @@ package rule.ColourisedImGame;
 import cell.*;
 import cell.ColourisedImGame.BlueCell;
 import cell.ColourisedImGame.RedCell;
-import cell.TraditionalGame.DeadCell;
+import cell.ColourisedImGame.DeadCell;
 import rule.Rule;
 
-import java.util.List;
+import java.util.HashMap;
 
 public class BirthRule extends Rule {
 
-    private List<Integer> numOfLiveCellsForBirth;
-    private List<Cell> neighborsCells;
-
-    public BirthRule(List<Integer> params) {
-        this.numOfLiveCellsForBirth = params;
-    }
+    public BirthRule() {}
 
     @Override
-    public boolean validate (Cell cell, List<Cell> cells) {
+    public boolean validate (Cell cell, HashMap<Class<?>, Integer> neighbors) {
         if (cell.getClass() != DeadCell.class) {
             return false;
         }
-        this.neighborsCells = cells;
-        int count = 0;
-        for (Cell c : cells) {
-            if (c.getClass() != DeadCell.class) {
-                count++;
-            }
+        Integer numOfRed = neighbors.get(RedCell.class);
+        Integer numOfBlue = neighbors.get(BlueCell.class);
+        if (numOfBlue == null) {
+            numOfBlue = 0;
         }
-        for (Integer integer : numOfLiveCellsForBirth) {
-            if (count == integer) {
-                return true;
-            }
+        if (numOfRed == null) {
+            numOfRed = 0;
         }
-        return false;
+        return numOfRed + numOfBlue == 3;
     }
 
     @Override
-    public Cell apply() {
-        int redCount = 0;
-        int greenCount = 0;
-        int blueCount = 0;
-        int yellowCount = 0;
+    public Cell apply (Cell cell, HashMap<Class<?>, Integer> neighbors) {
 
-        for (Cell c : neighborsCells) {
-            if (c.getClass() == RedCell.class) {
-                redCount++;
-                if (redCount >= 2) {
-                    return new RedCell();
-                }
-            }
-            if (c.getClass() == BlueCell.class) {
-                blueCount++;
-                if (blueCount >= 2) {
-                    return new BlueCell();
-                }
-            }
+        Integer numOfRed = neighbors.get(RedCell.class);
+        Integer numOfBlue = neighbors.get(BlueCell.class);
+        if (numOfBlue == null) {
+            numOfBlue = 0;
+        }
+        if (numOfRed == null) {
+            numOfRed = 0;
         }
 
-        if (redCount == 0){
+        if (numOfRed >= 2) {
             return new RedCell();
-        }else if (blueCount == 0){
+        }
+        if (numOfBlue >= 2) {
             return new BlueCell();
         }
-
         return new DeadCell();
+
+
+
+
     }
 
 }

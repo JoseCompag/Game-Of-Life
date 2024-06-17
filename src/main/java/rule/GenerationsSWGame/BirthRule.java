@@ -5,38 +5,26 @@ import cell.GenerationsSWGame.DeadCell;
 import cell.GenerationsSWGame.LivingCell;
 import rule.Rule;
 
-import java.util.List;
+import java.util.HashMap;
 
 public class BirthRule extends Rule {
 
-  private List<Integer> numOfLiveCellsForBirth;
+    public BirthRule() {}
 
-  public BirthRule (List<Integer> params) {
-    this.numOfLiveCellsForBirth = params;
-  }
+    @Override
+    public boolean validate (Cell cell, HashMap<Class<?>, Integer> neighbors) {
+        if (cell.getClass() != DeadCell.class) {
+            return false;
+        }
+        if (neighbors.get(LivingCell.class) == 2) {
+            return true;
+        }
+        return false;
+    }
 
-  @Override
-  public boolean validate (Cell cell, List<Cell> cells) {
-    if (cell.getClass() != DeadCell.class) {
-      return false;
+    @Override
+    public Cell apply(Cell cell, HashMap<Class<?>, Integer> neighbors) {
+        return new LivingCell();
     }
-    int count = 0;
-    for (Cell c : cells) {
-      if (c.getClass() == LivingCell.class) {
-        count++;
-      }
-    }
-    for (Integer integer : numOfLiveCellsForBirth) {
-      if (count == integer) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  @Override
-  public Cell apply() {
-    return new LivingCell();
-  }
 
 }

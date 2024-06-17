@@ -4,37 +4,25 @@ import cell.Cell;
 import cell.TraditionalHLGame.LivingCell;
 import rule.Rule;
 
-import java.util.List;
+import java.util.HashMap;
 
 public class SurviveRule extends Rule {
 
-  private List<Integer> numOfLiveCellsForSurvive;
-
-  public SurviveRule (List<Integer> params) {
-    this.numOfLiveCellsForSurvive = params;
-  }
+  public SurviveRule () {}
 
   @Override
-  public boolean validate (Cell cell, List<Cell> cells) {
+  public boolean validate (Cell cell, HashMap<Class<?>, Integer> neighbors) {
     if (cell.getClass() != LivingCell.class){
       return  false;
     }
-    int count = 0;
-    for (Cell c : cells) {
-      if (c.getClass() == LivingCell.class) {
-        count++;
-      }
-    }
-    for (Integer integer : numOfLiveCellsForSurvive) {
-      if (count == integer) {
-        return true;
-      }
+    if (neighbors.get(LivingCell.class) == 2 || neighbors.get(LivingCell.class) == 3) {
+      return true;
     }
     return false;
   }
 
   @Override
-  public Cell apply() {
+  public Cell apply(Cell cell, HashMap<Class<?>, Integer> neighbors) {
     return new LivingCell();
   }
 

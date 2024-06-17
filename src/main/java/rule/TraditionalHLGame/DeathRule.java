@@ -4,20 +4,20 @@ import cell.Cell;
 import cell.TraditionalHLGame.DeadCell;
 import rule.Rule;
 
-import java.util.List;
+import java.util.HashMap;
 
 public class DeathRule extends Rule {
 
-  public DeathRule() {}
+    public DeathRule() {}
 
-  @Override
-  public boolean validate (Cell cell, List<Cell> cells) {
-    return true;
-  }
+    @Override
+    public boolean validate (Cell cell, HashMap<Class<?>, Integer> neighbors) {
+        return true;
+    }
 
-  @Override
-  public Cell apply() {
-    return new DeadCell();
-  }
+    @Override
+    public Cell apply(Cell cell, HashMap<Class<?>, Integer> neighbors) {
+        return new DeadCell();
+    }
 
 }

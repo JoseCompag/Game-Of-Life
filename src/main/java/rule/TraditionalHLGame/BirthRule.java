@@ -5,37 +5,25 @@ import cell.TraditionalHLGame.DeadCell;
 import cell.TraditionalHLGame.LivingCell;
 import rule.Rule;
 
-import java.util.List;
+import java.util.HashMap;
 
 public class BirthRule extends Rule {
 
-  private List<Integer> numOfLiveCellsForBirth;
-
-  public BirthRule (List<Integer> params) {
-    this.numOfLiveCellsForBirth = params;
-  }
+  public BirthRule() {}
 
   @Override
-  public boolean validate (Cell cell, List<Cell> cells) {
+  public boolean validate (Cell cell, HashMap<Class<?>, Integer> neighbors) {
     if (cell.getClass() != DeadCell.class) {
       return false;
     }
-    int count = 0;
-    for (Cell c : cells) {
-      if (c.getClass() == LivingCell.class) {
-        count++;
-      }
-    }
-    for (Integer integer : numOfLiveCellsForBirth) {
-      if (count == integer) {
-        return true;
-      }
+    if (neighbors.get(LivingCell.class) == 3 || neighbors.get(LivingCell.class) == 6) {
+      return true;
     }
     return false;
   }
 
   @Override
-  public Cell apply() {
+  public Cell apply(Cell cell, HashMap<Class<?>, Integer> neighbors) {
     return new LivingCell();
   }
 

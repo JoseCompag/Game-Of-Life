@@ -20,8 +20,8 @@ public class GenerationsSWFactory implements AbstracFactory {
     @Override
     public List<Rule> createRules() {
         List<Rule> rules = new ArrayList<>();
-        Rule rule1 = new BirthRule(List.of(2));
-        Rule rule2 = new SurviveRule(List.of(3,4,5));
+        Rule rule1 = new BirthRule();
+        Rule rule2 = new SurviveRule();
         Rule rule3 = new Dying1Rule();
         Rule rule4 = new Dying2Rule();
         Rule rule5 = new DeathRule();

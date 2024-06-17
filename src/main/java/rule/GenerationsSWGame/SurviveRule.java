@@ -4,38 +4,26 @@ import cell.Cell;
 import cell.GenerationsSWGame.LivingCell;
 import rule.Rule;
 
-import java.util.List;
+import java.util.HashMap;
 
 public class SurviveRule extends Rule {
 
-  private List<Integer> numOfLiveCellsForSurvive;
+    public SurviveRule () {}
 
-  public SurviveRule (List<Integer> params) {
-    this.numOfLiveCellsForSurvive = params;
-  }
+    @Override
+    public boolean validate (Cell cell, HashMap<Class<?>, Integer> neighbors) {
+        if (cell.getClass() != LivingCell.class){
+            return  false;
+        }
+        if (neighbors.get(LivingCell.class) == 3 || neighbors.get(LivingCell.class) == 4 || neighbors.get(LivingCell.class) == 5) {
+            return true;
+        }
+        return false;
+    }
 
-  @Override
-  public boolean validate (Cell cell, List<Cell> cells) {
-    if (cell.getClass() != LivingCell.class){
-      return  false;
+    @Override
+    public Cell apply(Cell cell, HashMap<Class<?>, Integer> neighbors) {
+        return new LivingCell();
     }
-    int count = 0;
-    for (Cell c : cells) {
-      if (c.getClass() == LivingCell.class) {
-        count++;
-      }
-    }
-    for (Integer integer : numOfLiveCellsForSurvive) {
-      if (count == integer) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  @Override
-  public Cell apply() {
-    return new LivingCell();
-  }
 
 }
