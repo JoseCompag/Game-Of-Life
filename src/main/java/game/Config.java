@@ -13,6 +13,7 @@ public class Config {
     public int rows;
     public int cols;
     public String initialConfig;
+    public String advanceMode;
 
     private String path = "src/main/resources/";
     private String nameConfigProperties;
@@ -31,11 +32,13 @@ public class Config {
         String stringRows = prop.getProperty("rows");
         String stringCols = prop.getProperty("cols");
         String stringNameInitialConfig = prop.getProperty("nameInitialConfig");
+        String stringAdvanceMode = prop.getProperty("advanceMode");
 
         this.gamemode = gamemode;
         this.rows = Integer.parseInt(stringRows);
         this.cols = Integer.parseInt(stringCols);
         this.initialConfig = getInitialConfig(stringNameInitialConfig);
+        this.advanceMode = stringAdvanceMode;
     }
 
     private Properties getPropertieFile() {

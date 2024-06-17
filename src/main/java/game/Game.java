@@ -13,11 +13,9 @@ import java.util.List;
 public class Game {
 
     private String nameConfigProperties;
-    private Integer generations = 10;
 
-    public Game(String nameConfigProperties, int generations) {
+    public Game(String nameConfigProperties) {
         this.nameConfigProperties = nameConfigProperties;
-        this.generations = generations;
     }
 
     public void start() {
@@ -30,7 +28,7 @@ public class Game {
         List<Rule> rules = factory.createRules();
         board.setRules(rules);
 
-        GameController gameController = new StartDefault(board);
+        GameController gameController = createController(board, config.advanceMode);
         TerminalOutput output = new TerminalOutput(gameController);
         gameController.start();
     }
@@ -41,16 +39,28 @@ public class Game {
           return new TraditionalFactory();
         case "traditionalHL":
           return new TraditionalHLFactory();
-        case "colorisedQL":
-          return new ColorisedQLFactory();
         case "colorisedIm":
           return new ColorisedImFactory();
+        case "colorisedQL":
+          return new ColorisedQLFactory();
         case "generationsBB":
           return  new GenerationsBBFactory();
         case "generationsSW":
           return  new GenerationsSWFactory();
       }
       return null;
+    }
+
+    private GameController createController (Board board, String advanceMode) {
+        switch (advanceMode) {
+            case "slow":
+                return new Speed(board, 500);
+            case "fast":
+                return new Speed(board, 50);
+            case "manual":
+                return new Manual(board);
+        }
+        return new Delimited(board, Integer.parseInt(advanceMode));
     }
 
 }

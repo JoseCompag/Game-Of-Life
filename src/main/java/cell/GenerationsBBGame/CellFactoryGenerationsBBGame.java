@@ -2,6 +2,7 @@ package cell.GenerationsBBGame;
 
 import cell.Cell;
 import cell.CellFactory;
+import cell.DeadInitCell;
 
 public class CellFactoryGenerationsBBGame extends CellFactory {
 

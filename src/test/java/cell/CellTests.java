@@ -2,6 +2,7 @@ package cell;
 
 import cell.TraditionalGame.*;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class CellTests {

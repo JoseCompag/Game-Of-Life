@@ -1,6 +1,4 @@
-package cell.GenerationsBBGame;
-
-import cell.Cell;
+package cell;
 
 public class DeadInitCell extends Cell {
 
@@ -10,5 +8,5 @@ public class DeadInitCell extends Cell {
         String reset="\u001B[0m";
         return black+"■"+reset;
     }
-    // o poner el cuadrado vacio
+
 }

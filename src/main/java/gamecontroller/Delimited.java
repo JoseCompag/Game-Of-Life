@@ -5,9 +5,11 @@ import output.Observer;
 
 import java.util.ArrayList;
 
-public class StartDelimited extends GameController{
+public class Delimited extends GameController {
 
-  public StartDelimited(Board board, Integer generationMax){
+  private Integer generationMax;
+
+  public Delimited(Board board, Integer generationMax) {
     this.generationMax = generationMax;
     this.board = board;
     observers = new ArrayList<Observer>();
@@ -15,11 +17,20 @@ public class StartDelimited extends GameController{
 
   @Override
   public void start() {
+
     generation = 0;
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+    String print = board.toString();
+    System.out.println("---"+generation+"---");
+    System.out.println(print);
+    generation++;
+
     do {
       this.board = board.nextBoard ();
       generation++;
       notifyObservers();
     } while (generation < generationMax);
   }
+
 }

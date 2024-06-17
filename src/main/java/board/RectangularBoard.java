@@ -21,7 +21,7 @@ public class RectangularBoard extends Board {
     board = new Cell[rows][cols];
     for (int x = 0; x < rows; x++) {
       for (int y = 0; y < cols; y++) {
-        board[x][y] = new DeadCell();
+        board[x][y] = new DeadInitCell();
       }
     }
   }

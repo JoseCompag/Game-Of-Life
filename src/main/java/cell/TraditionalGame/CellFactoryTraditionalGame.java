@@ -2,6 +2,7 @@ package cell.TraditionalGame;
 
 import cell.Cell;
 import cell.CellFactory;
+import cell.DeadInitCell;
 
 public class CellFactoryTraditionalGame extends CellFactory {
 
@@ -12,6 +13,6 @@ public class CellFactoryTraditionalGame extends CellFactory {
     if (symbol.equals('■')) {
       return new LivingCell();
     }
-    return new DeadCell();
+    return new DeadInitCell();
   }
 }

@@ -2,6 +2,7 @@ package cell.GenerationsSWGame;
 
 import cell.Cell;
 import cell.CellFactory;
+import cell.DeadInitCell;
 
 public class CellFactoryGenerationsSWGame extends CellFactory {
 

@@ -1,6 +1,7 @@
 package rule.TraditionalGame;
 
 import cell.Cell;
+import cell.DeadInitCell;
 import cell.TraditionalGame.DeadCell;
 import cell.TraditionalGame.LivingCell;
 import rule.Rule;
