@@ -2,6 +2,7 @@ package cell.TraditionalHLGame;
 
 import cell.Cell;
 import cell.CellFactory;
+import cell.DeadCell;
 
 public class CellFactoryTraditionalHLGame extends CellFactory {
 

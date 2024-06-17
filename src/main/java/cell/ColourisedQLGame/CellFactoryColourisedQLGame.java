@@ -2,6 +2,7 @@ package cell.ColourisedQLGame;
 
 import cell.Cell;
 import cell.CellFactory;
+import cell.DeadCell;
 
 public class CellFactoryColourisedQLGame extends CellFactory {
 
