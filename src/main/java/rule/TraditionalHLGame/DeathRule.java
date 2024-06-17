@@ -1,7 +1,7 @@
 package rule.TraditionalHLGame;
 
 import cell.Cell;
-import cell.TraditionalHLGame.DeadCell;
+import cell.DeadCell;
 import rule.Rule;
 
 import java.util.HashMap;

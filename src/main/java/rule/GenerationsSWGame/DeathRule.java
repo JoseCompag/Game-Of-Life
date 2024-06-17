@@ -1,7 +1,7 @@
 package rule.GenerationsSWGame;
 
 import cell.Cell;
-import cell.GenerationsSWGame.DeadCell;
+import cell.DeadCell;
 import rule.Rule;
 
 import java.util.HashMap;

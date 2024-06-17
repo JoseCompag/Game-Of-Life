@@ -1,7 +1,7 @@
 package rule.GenerationsSWGame;
 
 import cell.Cell;
-import cell.GenerationsSWGame.DeadCell;
+import cell.DeadCell;
 import cell.GenerationsSWGame.LivingCell;
 import rule.Rule;
 

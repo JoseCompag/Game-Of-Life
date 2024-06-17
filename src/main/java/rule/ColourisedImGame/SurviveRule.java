@@ -2,7 +2,7 @@ package rule.ColourisedImGame;
 
 import cell.*;
 import cell.ColourisedImGame.BlueCell;
-import cell.ColourisedImGame.DeadCell;
+import cell.DeadCell;
 import cell.ColourisedImGame.RedCell;
 import rule.Rule;
 

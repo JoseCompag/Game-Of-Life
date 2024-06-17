@@ -1,7 +1,7 @@
 package rule.TraditionalGame;
 
 import cell.Cell;
-import cell.TraditionalGame.DeadCell;
+import cell.DeadCell;
 import rule.Rule;
 
 import java.util.HashMap;
@@ -16,7 +16,7 @@ public class DeathRule extends Rule {
   }
 
   @Override
-  public Cell apply(Cell cell, HashMap<Class<?>, Integer> neighbors) {
+  public Cell apply (Cell cell, HashMap<Class<?>, Integer> neighbors) {
     return new DeadCell();
   }
 

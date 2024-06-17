@@ -3,7 +3,7 @@ package rule.ColourisedImGame;
 import cell.*;
 import cell.ColourisedImGame.BlueCell;
 import cell.ColourisedImGame.RedCell;
-import cell.ColourisedImGame.DeadCell;
+import cell.DeadCell;
 import rule.Rule;
 
 import java.util.HashMap;

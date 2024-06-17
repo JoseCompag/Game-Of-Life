@@ -9,14 +9,13 @@ public class CellFactoryColourisedImGame extends CellFactory {
 
   @Override
   public Cell createCell(Character symbol) {
-
     switch (symbol) {
       case 'R':
         return new RedCell();
       case 'B':
         return new BlueCell();
     }
-
     return new DeadCell();
   }
+
 }

@@ -1,7 +1,7 @@
 package rule.ColourisedImGame;
 
 import cell.Cell;
-import cell.ColourisedImGame.DeadCell;
+import cell.DeadCell;
 import rule.Rule;
 
 import java.util.HashMap;

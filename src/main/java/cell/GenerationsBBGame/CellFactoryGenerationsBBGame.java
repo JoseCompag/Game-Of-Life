@@ -2,7 +2,7 @@ package cell.GenerationsBBGame;
 
 import cell.Cell;
 import cell.CellFactory;
-import cell.DeadInitCell;
+import cell.DeadCell;
 
 public class CellFactoryGenerationsBBGame extends CellFactory {
 
@@ -16,7 +16,7 @@ public class CellFactoryGenerationsBBGame extends CellFactory {
             case 'R':
                 return new DyingCell1();
             case 'I':
-                return new DeadInitCell();
+                return new DeadCell();
         }
         return new DeadCell();
     }
