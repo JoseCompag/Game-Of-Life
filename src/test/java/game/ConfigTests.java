@@ -8,7 +8,7 @@ public class ParserConfigTests {
   static Stream<Arguments> paths() {
     return Stream.of(
       //
-      arguments("configTest1.properties",
+      arguments("pTraditional40x55.properties",
           "□ □ □ □ □ □ □ □ \n" +
           "□ ■ ■ □ □ ■ ■ □ \n" +
           "□ □ □ ■ ■ □ □ □ \n" +
@@ -17,7 +17,7 @@ public class ParserConfigTests {
           "□ □ □ ■ ■ □ □ □ \n" +
           "□ ■ ■ □ □ ■ ■ □ \n" +
           "□ □ □ □ □ □ □ □ "+"\n"),
-      arguments("traditionalHL35x50.properties",
+      arguments("pTraditionalHL40x55.properties",
           "□ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ \n" +
@@ -26,7 +26,7 @@ public class ParserConfigTests {
           "□ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ "+"\n"),
-      arguments("configTest3.properties",
+      arguments("pColorisedQL40x55.properties",
           "□ □ □ □ □ □ □ □ \n" +
           "□ □ □ ■ ■ □ □ □ \n" +
           "□ □ ■ □ □ ■ □ □ \n" +
