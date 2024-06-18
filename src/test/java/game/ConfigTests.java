@@ -17,7 +17,7 @@ public class ParserConfigTests {
           "□ □ □ ■ ■ □ □ □ \n" +
           "□ ■ ■ □ □ ■ ■ □ \n" +
           "□ □ □ □ □ □ □ □ "+"\n"),
-      arguments("configTest2.properties",
+      arguments("traditionalHL35x50.properties",
           "□ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ \n" +
           "□ □ □ □ □ □ □ □ \n" +

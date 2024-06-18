@@ -1,5 +1,6 @@
 package game;
 
+import java.io.FileInputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
@@ -17,6 +18,7 @@ public class Config {
     public String output;
 
     private String nameConfigProperties;
+    private String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
 
     public Config(String nameConfigProperties) {
         this.nameConfigProperties = nameConfigProperties;
@@ -46,8 +48,7 @@ public class Config {
     private Properties getPropertieFile() {
         try {
             Properties prop = new Properties();
-            InputStream input = getClass().getClassLoader().getResourceAsStream(this.nameConfigProperties);
-            prop.load(input);
+            prop.load(new FileInputStream(rootPath + nameConfigProperties));
             return prop;
         } catch (IOException e) {
             throw new RuntimeException("Error reading properties file:" + e.getMessage());
@@ -56,7 +57,7 @@ public class Config {
 
     private String getInitialConfig(String nameInitialConfigTxt) {
         try {
-            Path path = Paths.get("src/main/resources/" + nameInitialConfigTxt);
+            Path path = Paths.get(rootPath+nameInitialConfigTxt);
             return Files.readString(path);
         } catch (IOException e) {
             throw new RuntimeException("Error reading initial config file:" + e.getMessage());

@@ -2,11 +2,12 @@ package main;
 
 import game.Game;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main (String[] args) {
-        String s = "configColorised15x20.properties";
-        Game game = new Game(s);
+        Game game = new Game(args[0]);
         game.start();
     }
 
