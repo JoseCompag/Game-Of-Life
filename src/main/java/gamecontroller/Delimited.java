@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 public class Delimited extends GameController {
 
-  private Integer generationMax;
-
   public Delimited(Board board, Integer generationMax) {
     this.generationMax = generationMax;
     this.board = board;

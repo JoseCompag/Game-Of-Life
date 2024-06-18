@@ -8,6 +8,7 @@ public abstract class GameController extends Subject {
   protected Board board;
   protected Integer generation;
   protected Integer time = 450;
+  protected Integer generationMax = 5000;
 
   public abstract void start();
 

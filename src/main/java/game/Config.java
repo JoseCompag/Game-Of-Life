@@ -16,7 +16,6 @@ public class Config {
     public String advanceMode;
     public String output;
 
-    private String path = "src/main/resources/";
     private String nameConfigProperties;
 
     public Config(String nameConfigProperties) {
@@ -55,14 +54,14 @@ public class Config {
         }
     }
 
-    private String getInitialConfig (String nameInitialConfigTxt) {
+    private String getInitialConfig(String nameInitialConfigTxt) {
         try {
-            this.path += nameInitialConfigTxt;
-            Path path = Paths.get(this.path);
+            Path path = Paths.get("src/main/resources/" + nameInitialConfigTxt);
             return Files.readString(path);
         } catch (IOException e) {
             throw new RuntimeException("Error reading initial config file:" + e.getMessage());
         }
     }
-
 }
+
+//Path path = Paths.get("/home/josei/Escritorio/DISEÑO_DE_SOFTWARE_ORIENTADO_A_OBJETOS/tp2-GameOfLife/target/classes/", nameInitialConfigTxt);

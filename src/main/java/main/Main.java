@@ -5,7 +5,8 @@ import game.Game;
 public class Main {
 
     public static void main (String[] args) {
-        Game game = new Game("configColorised15x20.properties");
+        String s = "configColorised15x20.properties";
+        Game game = new Game(s);
         game.start();
     }
 
