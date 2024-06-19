@@ -15,8 +15,6 @@ public class CellFactoryGenerationsBBGame extends CellFactory {
                 return new LivingCell();
             case 'R':
                 return new DyingCell1();
-            case 'I':
-                return new DeadCell();
         }
         return new DeadCell();
     }

@@ -37,9 +37,9 @@ public class Game {
 
   private Output createOutput(GameController gameController, String output) {
     switch (output) {
-      case "F":
+      case "file":
         return new FileOutput(gameController);
-      case "T":
+      case "terminal":
         return new TerminalOutput(gameController);
     }
     return null;
