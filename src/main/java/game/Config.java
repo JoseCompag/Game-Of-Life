@@ -2,9 +2,6 @@ package game;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 public class Config {
@@ -45,13 +42,13 @@ public class Config {
     }
 
     private Properties getPropertieFile() {
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream(nameConfigProperties)) {
-            if (input == null) {
+        try (InputStream inputProperties = getClass().getClassLoader().getResourceAsStream(nameConfigProperties)) {
+            if (inputProperties == null) {
                 throw new IOException("File not found: " + nameConfigProperties);
             }
 
             Properties prop = new Properties();
-            prop.load(input);
+            prop.load(inputProperties);
             return prop;
         } catch (IOException e) {
             throw new RuntimeException("Error reading properties file:" + e.getMessage());
@@ -59,11 +56,11 @@ public class Config {
     }
 
     private String getInitialConfig(String nameInitialConfigTxt) {
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream(nameInitialConfigTxt)) {
-            if (input == null) {
+        try (InputStream file = getClass().getClassLoader().getResourceAsStream(nameInitialConfigTxt)) {
+            if (file == null) {
                 throw new IOException("File not found: " + nameInitialConfigTxt);
             }
-            return new String(input.readAllBytes());
+            return new String(file.readAllBytes());
         } catch (IOException e) {
             throw new RuntimeException("Error reading initial config file: " + e.getMessage());
         }
