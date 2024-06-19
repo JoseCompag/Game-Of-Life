@@ -1,3 +1,5 @@
 # tp2-compagnucci-rojo
 
-- El Observer **FileOutput** solo funciona para el modo de **juego Tradicional**
+### Autores
+- __Compagnucci José__
+- __Rojo Jonathan__
