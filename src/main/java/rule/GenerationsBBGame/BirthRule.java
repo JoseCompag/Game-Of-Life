@@ -13,7 +13,7 @@ public class BirthRule extends Rule {
 
   @Override
   public boolean validate (Cell cell, HashMap<Class<?>, Integer> neighbors) {
-    if (cell.getClass() != DeadCell.class) {
+    if (cell.getClass() != DeadCell.class || neighbors.get(LivingCell.class) == null) {
       return false;
     }
     if (neighbors.get(LivingCell.class) == 2) {

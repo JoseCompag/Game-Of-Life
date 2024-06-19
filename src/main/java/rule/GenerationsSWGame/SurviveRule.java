@@ -12,7 +12,7 @@ public class SurviveRule extends Rule {
 
     @Override
     public boolean validate (Cell cell, HashMap<Class<?>, Integer> neighbors) {
-        if (cell.getClass() != LivingCell.class){
+        if (cell.getClass() != LivingCell.class || neighbors.get(LivingCell.class) == null){
             return  false;
         }
         if (neighbors.get(LivingCell.class) == 3 || neighbors.get(LivingCell.class) == 4 || neighbors.get(LivingCell.class) == 5) {
