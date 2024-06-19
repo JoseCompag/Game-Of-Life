@@ -1,11 +1,10 @@
 package game;
 
-import java.io.FileInputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.Path;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 public class Config {
@@ -28,7 +27,7 @@ public class Config {
         parseConfig();
     }
 
-    private void parseConfig (){
+    private void parseConfig() {
         Properties prop = getPropertieFile();
         String gamemode = prop.getProperty("gamemode");
         String stringRows = prop.getProperty("rows");
@@ -46,9 +45,13 @@ public class Config {
     }
 
     private Properties getPropertieFile() {
-        try {
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream(nameConfigProperties)) {
+            if (input == null) {
+                throw new IOException("File not found: " + nameConfigProperties);
+            }
+
             Properties prop = new Properties();
-            prop.load(new FileInputStream(rootPath + nameConfigProperties));
+            prop.load(input);
             return prop;
         } catch (IOException e) {
             throw new RuntimeException("Error reading properties file:" + e.getMessage());
@@ -56,13 +59,13 @@ public class Config {
     }
 
     private String getInitialConfig(String nameInitialConfigTxt) {
-        try {
-            Path path = Paths.get(rootPath+nameInitialConfigTxt);
-            return Files.readString(path);
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream(nameInitialConfigTxt)) {
+            if (input == null) {
+                throw new IOException("File not found: " + nameInitialConfigTxt);
+            }
+            return new String(input.readAllBytes());
         } catch (IOException e) {
-            throw new RuntimeException("Error reading initial config file:" + e.getMessage());
+            throw new RuntimeException("Error reading initial config file: " + e.getMessage());
         }
     }
 }
-
-//Path path = Paths.get("/home/josei/Escritorio/DISEÑO_DE_SOFTWARE_ORIENTADO_A_OBJETOS/tp2-GameOfLife/target/classes/", nameInitialConfigTxt);
