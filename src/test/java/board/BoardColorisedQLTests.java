@@ -73,11 +73,10 @@ public class BoardColorisedQLTests {
     Board board = new RectangularBoard(15, 20, configInitial, new CellFactoryColourisedQLGame());
     board.setRules(rules);
     for (String listBoard : boards) {
-      //System.out.println(board.toString());
       board = board.nextBoard();
       String aux = board.toString();
       System.out.println(aux);
-      //System.out.println(listBoard);
+
       Boolean res = aux.equals(listBoard);
       assertThat(res).isTrue();
     }
