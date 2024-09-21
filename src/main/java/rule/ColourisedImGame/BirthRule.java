@@ -47,10 +47,6 @@ public class BirthRule extends Rule {
             return new BlueCell();
         }
         return new DeadCell();
-
-
-
-
     }
 
 }

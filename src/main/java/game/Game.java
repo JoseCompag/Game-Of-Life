@@ -47,6 +47,8 @@ public class Game {
 
   private AbstracFactory createFactory(String gamemode) {
       switch (gamemode) {
+        case "colorisedImNew":
+          return new ColorisedImNewFactory();
         case "traditional":
           return new TraditionalFactory();
         case "traditionalHL":
@@ -65,6 +67,8 @@ public class Game {
 
     private GameController createController (Board board, String advanceMode) {
         switch (advanceMode) {
+            case "ManualQN":
+                return new ManualQN(board);
             case "slow":
                 return new Speed(board, 600);
             case "fast":

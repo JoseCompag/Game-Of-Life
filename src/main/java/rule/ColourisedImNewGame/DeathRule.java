@@ -1,4 +1,4 @@
-package rule.ColourisedImGame;
+package rule.ColourisedImNewGame;
 
 import cell.Cell;
 import cell.DeadCell;
@@ -7,19 +7,13 @@ import rule.Rule;
 import java.util.HashMap;
 
 public class DeathRule extends Rule {
-
-  public DeathRule() {}
-
   @Override
-  public boolean validate (Cell cell, HashMap<Class<?>, Integer> neighbors) {
-
+  public boolean validate(Cell cell, HashMap<Class<?>, Integer> neighbors) {
     return true;
   }
 
   @Override
   public Cell apply(Cell cell, HashMap<Class<?>, Integer> neighbors) {
-
     return new DeadCell();
   }
-
 }
