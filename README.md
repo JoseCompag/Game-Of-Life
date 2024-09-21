@@ -1,4 +1,4 @@
-# tp2-compagnucci-rojo
+# Game Of Life
 
 ### Autores
 - __Compagnucci José__
